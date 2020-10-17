@@ -120,3 +120,55 @@ int main(){
  printf("multotal=%d",multotal);
    return 0;
 }
+
+
+# c语言操作Oracle数据库
+C语言操作Oracle数据库，开发工具：Clion 1， 将I:\Software\oracle数据库\c语言操作Oracle数据库的依赖库项目下面的ocilib4.7.0文件夹复制到d:\programs(最终变成D:\Programs\ocilib4.7.0) 2， 在Clion中创建一个c语言项目 3， 配置CmakeList.txt文件，内容如下 cmake_minimum_required(VERSION 3.16) project(oracleOp C)
+
+set(CMAKE_C_STANDARD 99) include_directories(D:\programs\ocilib4.7.0\include) link_directories(D:\programs\ocilib4.7.0\lib64) link_libraries(ociliba) add_executable(oracleOp OracleOp.c)
+
+4.将D:\programs\ocilib4.7.0\lib64\ ociliba.dll复制到 cmake-build-debug目录下面(如果不复制，会出现程序运行正常，但是没有任何数据的现象) 4b.配置环境变量path，增加D:\programs\ocilib4.7.0\include 5.参考代码 #include <stdio.h> #include <tchar.h> #include "ocilib.h"
+
+void err_handler(OCI_Error *err) { printf( "code : ORA-%05i\n" "msg : %s\n" "sql : %s\n", OCI_ErrorGetOCICode(err), OCI_ErrorGetString(err), OCI_GetSql(OCI_ErrorGetStatement(err)) ); }
+
+int main(int argc, _TCHAR* argv[]) {
+
+OCI_Connection* cn;
+OCI_Statement* st;
+OCI_Resultset* rs;
+
+
+OCI_Initialize(NULL, NULL, OCI_ENV_DEFAULT);
+
+cn  = OCI_ConnectionCreate("127.0.0.1:1521/ORCL", "scott", "tiger", OCI_SESSION_DEFAULT);
+ printf("%d\n",cn==NULL);
+if(cn == NULL){
+    err_handler(OCI_GetLastError());
+    printf("%i",OCI_GetVersionServer(cn));
+    printf("连接失败！\n");
+}
+st  = OCI_StatementCreate(cn);
+
+OCI_ExecuteStmt(st, "select empno,ename,sal,deptno from emp");
+
+rs = OCI_GetResultset(st);
+
+while (OCI_FetchNext(rs)){
+    printf("code: %i, name %s,salary %d,department# %d\n", OCI_GetInt(rs, 1)  , OCI_GetString(rs, 2),OCI_GetInt(rs, 3),OCI_GetInt(rs, 4));
+}
+
+printf("\n%d row(s) fetched\n", OCI_GetRowCount(rs));
+
+
+OCI_Cleanup();
+
+
+char a[20];
+gets(a);
+
+return EXIT_SUCCESS;
+}
+
+结果： code: 7369, name SMITH,salary 800,department# 20 code: 7499, name ALLEN,salary 1600,department# 30 code: 7521, name WARD,salary 1250,department# 30 code: 7566, name JONES,salary 2975,department# 20 code: 7654, name MARTIN,salary 1250,department# 30 code: 7698, name BLAKE,salary 2850,department# 30 code: 7782, name CLARK,salary 2450,department# 10 code: 7788, name SCOTT,salary 3000,department# 20 code: 7839, name KING,salary 5000,department# 10 code: 7844, name TURNER,salary 1500,department# 30 code: 7876, name ADAMS,salary 1100,department# 20 code: 7900, name JAMES,salary 950,department# 30 code: 7902, name FORD,salary 3000,department# 20 code: 7934, name MILLER,salary 1300,department# 10
+
+14 row(s) fetched
