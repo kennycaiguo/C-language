@@ -1,4 +1,6 @@
 # C-language
+# <a href="https://zhuanlan.zhihu.com/p/84828775">c语言操作mysql数据库</a>
+# <a href="https://www.jianshu.com/p/5b80aa05199a">c语言操作mysql数据库</a>
 # <a href="https://www.w3cschool.cn/cadvance/izeb1j6f.html">C语言 函数指针</a>
 # <a href="https://www.runoob.com/cprogramming/c-recursion.html">C语言函数的递归调用</a>
 # C语言中使用可变参数
