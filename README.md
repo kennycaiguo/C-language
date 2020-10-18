@@ -283,6 +283,7 @@ Node* anyNode(int count,...){ //利用可变参数动态创建链表
     for(int i=0;i<count;i++){
         np[i]->next=np[i+1];
     }
+    va_end(args);
     return np[0];
 }
 
