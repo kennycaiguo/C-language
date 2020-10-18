@@ -222,7 +222,7 @@ void showNodeInfo(Node *n){
        printf("%s\n",n->data);
 
        n=n->next;
-       //++p;
+        
    }
 
 }
