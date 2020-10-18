@@ -315,3 +315,47 @@ c++
 golang
 python
 java
+# <a href="https://blog.csdn.net/bufanq/article/details/51567454">C语言实现字符串的查找和替换</a>
+
+# c语言实现替换指定的字符串
+int ReplaceStr(char* sSrc, char* sMatchStr, char* sReplaceStr)
+{
+    int StringLen;
+    char caNewString[64];
+    char* FindPos;
+    FindPos =(char *)strstr(sSrc, sMatchStr);
+    if( (!FindPos) || (!sMatchStr) )
+        return -1;
+
+    while( FindPos )
+    {
+        memset(caNewString, 0, sizeof(caNewString));
+        StringLen = FindPos - sSrc;
+        strncpy(caNewString, sSrc, StringLen);
+        strcat(caNewString, sReplaceStr);
+        strcat(caNewString, FindPos + strlen(sMatchStr));
+        strcpy(sSrc, caNewString);
+
+        FindPos =(char *)strstr(sSrc, sMatchStr);
+    }
+    free(FindPos);
+    return 0;
+}
+
+
+int main() {
+    time_t curtime;
+    time(&curtime);
+    char* date = ctime(&curtime);
+    ReplaceStr(date," ",",");
+    printf("%s",date);
+    return 0;
+
+}
+
+
+
+
+
+
+
