@@ -174,3 +174,103 @@ return EXIT_SUCCESS;
 结果： code: 7369, name SMITH,salary 800,department# 20 code: 7499, name ALLEN,salary 1600,department# 30 code: 7521, name WARD,salary 1250,department# 30 code: 7566, name JONES,salary 2975,department# 20 code: 7654, name MARTIN,salary 1250,department# 30 code: 7698, name BLAKE,salary 2850,department# 30 code: 7782, name CLARK,salary 2450,department# 10 code: 7788, name SCOTT,salary 3000,department# 20 code: 7839, name KING,salary 5000,department# 10 code: 7844, name TURNER,salary 1500,department# 30 code: 7876, name ADAMS,salary 1100,department# 20 code: 7900, name JAMES,salary 950,department# 30 code: 7902, name FORD,salary 3000,department# 20 code: 7934, name MILLER,salary 1300,department# 10
 
 14 row(s) fetched
+
+# c语言链表基本操作
+#include <stdio.h>
+#include "stdlib.h"				//提供malloc()和free()
+#include "string.h"
+#include <stdarg.h>
+
+typedef struct Node{
+    char* data;
+    struct Node* next;
+}Node;
+
+Node* head= NULL;
+
+Node* end = NULL;
+
+struct Node*  AddListTill(char* a )
+{
+    //创建一个节点
+   Node* temp=(Node*)malloc(sizeof(Node));		//此处注意强制类型转换
+
+    //节点数据进行赋值
+    temp->data=a;
+    temp->next=NULL;
+
+    //连接分两种情况1.一个节点都没有2.已经有节点了，添加到尾巴上
+   /* if(NULL==head)
+    {
+
+        head=temp;
+       // end=temp;
+    }
+    else
+    {
+        end->next=temp;
+        //	end=temp;			//尾结点应该始终指向最后一个
+    }
+    end=temp;//尾结点应该始终指向最后一个
+*/
+    return temp;
+
+}
+void showNodeInfo(Node *n){
+
+   while(n!=NULL){
+       printf("%s\n",n->data);
+
+       n=n->next;
+       //++p;
+   }
+
+}
+
+Node* anyNode(int count,...){ //利用可变参数动态创建链表
+    va_list args;
+    int j=0;
+    va_start(args,count);
+    Node *np[count];
+    for(int i=0;i<count;i++){
+
+       np[i]=(Node*)malloc(sizeof(Node));
+        np[i]->data=va_arg(args,char*);
+        np[i]->next=NULL;
+        j++;
+    }
+    for(int i=0;i<count;i++){
+        np[i]->next=np[i+1];
+    }
+    return np[0];
+}
+
+int main() {
+   // printf("Hello, World!\n");
+    /* Node* node =(Node*)malloc(sizeof(Node));
+     Node* node1=(Node*)malloc(sizeof(Node));
+     Node* node2=(Node*)malloc(sizeof(Node));
+     Node* node3=(Node*)malloc(sizeof(Node));
+    node = AddListTill("pussy");
+    node1=AddListTill("vagina");
+    node2=AddListTill("labias");
+    node3=AddListTill("clitoris");
+    node3->next=NULL;
+   node2->next=node3;
+   node1->next=node2;
+   node->next =node1;*/
+    //printf("%s",node);
+    Node* node2 =(Node*)malloc(sizeof(Node));
+   // node2 =anyNode(3,"pussy","breast","clitoris");
+    node2=anyNode(4,"c++","golang","python","java");
+    showNodeInfo(node2);
+
+    return 0;
+}
+
+结果：
+D:\ClionProjects\src\linklist\cmake-build-debug\linklist.exe
+c++
+golang
+python
+java
