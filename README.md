@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-
-
 int AnySum(int count,...) { //求任意个数整数的和（参数count指定个数）
     va_list args;
     int sum = 0;
@@ -174,7 +172,20 @@ return EXIT_SUCCESS;
 结果： code: 7369, name SMITH,salary 800,department# 20 code: 7499, name ALLEN,salary 1600,department# 30 code: 7521, name WARD,salary 1250,department# 30 code: 7566, name JONES,salary 2975,department# 20 code: 7654, name MARTIN,salary 1250,department# 30 code: 7698, name BLAKE,salary 2850,department# 30 code: 7782, name CLARK,salary 2450,department# 10 code: 7788, name SCOTT,salary 3000,department# 20 code: 7839, name KING,salary 5000,department# 10 code: 7844, name TURNER,salary 1500,department# 30 code: 7876, name ADAMS,salary 1100,department# 20 code: 7900, name JAMES,salary 950,department# 30 code: 7902, name FORD,salary 3000,department# 20 code: 7934, name MILLER,salary 1300,department# 10
 
 14 row(s) fetched
+# C 语言利用数组作为函数的形参
+#include<stdio.h>
 
+void showArrayElemants(int arr[], int size){ //注意：这里size就是数组的长度
+    for(int i=0;i<size;i++){
+        printf("element(%d): %d ",i,arr[i]);
+    }
+}
+
+void main(){
+     int a[]={2,3,6,7,9,14,56,45,65,67};
+     int size = sizeof(a)/sizeof(a[0]);//获取数组的元素个数：数组的总长度/每个元素的长度
+     showArrayElemants(a,size);//size跟数组的元素个数必须一样
+}
  
 # C语言链表的基本操作
 ## 实例1
