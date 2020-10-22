@@ -3,6 +3,7 @@
 # <a href="https://www.jianshu.com/p/5b80aa05199a">c语言操作mysql数据库</a>
 # <a href="https://www.w3cschool.cn/cadvance/izeb1j6f.html">C语言 函数指针</a>
 # <a href="https://www.runoob.com/cprogramming/c-recursion.html">C语言函数的递归调用</a>
+# <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
 # C语言中使用可变参数
 实例，开发工具为Clion，编译器使用MinGW64 8.1
 #include <stdio.h>
