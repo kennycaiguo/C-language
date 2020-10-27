@@ -6,6 +6,34 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# c语言统计字符串出现的次数
+#include <stdio.h>
+#include <string.h>
+
+int countStr(const char *str,const char *lookStr);
+
+int main() {
+    char str[]="welcome to china,welcome to guandong,welcome to donggun,welcome to zmt";
+    char *looup="come";
+   
+    int i=countStr(str,looup);
+    printf("times:%d",i);
+
+    return 0;
+}
+
+int countStr(const char *str,const char *lookStr) {
+    char *c1=strstr(str, lookStr);//come:come to china,welcome to guandong,welcome to donggun,welcome to zmt
+    int i=0;
+    while (c1!=NULL){
+        printf("result:%s\n",c1);
+        c1++; //要移动指针位置，否则会变成死循环
+        i++;
+        c1=strstr(c1, lookStr);
+    }
+    return i;
+}
+
 # C语言中使用可变参数
 实例，开发工具为Clion，编译器使用MinGW64 8.1
 #include <stdio.h>
