@@ -33,6 +33,14 @@ int countStr(const char *str,const char *lookStr) {
     }
     return i;
 }
+# c语言换行输出一个字符串的所有字符
+void printChars(const char* str) {
+
+       int len=strlen(str)/sizeof(str[0]);//获取字符数组的长度
+       for(int i=0;i<len;i++){
+           printf("%c\n",str[i]);
+       }
+}
 
 # C语言中使用可变参数
 实例，开发工具为Clion，编译器使用MinGW64 8.1
