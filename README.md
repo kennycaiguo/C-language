@@ -68,6 +68,38 @@ int  main()
 
 }
 
+# c语言求解一元二次方程
+#include <stdio.h>
+#include <math.h>
+//c语言解一元二次方程
+int equation(){
+    double a,b,c;
+    double delta;
+    double x1,x2;
+    printf("请输入三个整数：\n");
+    printf("请输入第一个整数：\n");
+    scanf("%lf",&a);
+    printf("请输入第二个整数：\n");
+    scanf("%lf",&b);
+    printf("请输入第三个整数：\n");
+    scanf("%lf",&c);
+    delta=b*b-4*a*c;
+    if(delta > 0){
+      x1 = (-b+sqrt(delta))/2*a;
+      x2 = (-b-sqrt(delta))/2*a;
+        printf("有两个解：x1=%lf,x2=%lf\n",x1,x2);
+    } else if(0==delta){
+        x1=x2=(-b/2*a);
+        printf("有唯一解：x1=x2=%lf\n",x1);
+    }else{
+        printf("无实数解！\n");
+    }
+
+}
+int main() {
+    equation();
+    return 0;
+}
 
 
 
