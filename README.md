@@ -96,7 +96,7 @@ int equation(){
         }else{
             printf("无实数解！\n");
         }
-        printf("输入y求解下一个方程，n结束:\n");
+        printf("输入y求解下一个方程，n或其他字符结束:\n");
         scanf(" %c",&ch);//前面必须加一个空格
        /* if('n'==ch||'N'==ch){
             break;
