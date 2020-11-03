@@ -6,6 +6,103 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# c语言斐波那契数列的非递归算法
+ #include <stdio.h>
+
+int main() {
+    int f1=1;
+    int f2=2;
+    int f3;
+    int n;
+    printf("请输入要求的项");
+    scanf("%d",&n);
+    if(1==n){
+        f3=1;
+    }else if(2==n){
+       f3=2;
+    }else{
+        for(int i=3;i<=n;++i){
+             f3 = f1 + f2;
+             f1 = f2;
+             f2 = f3;
+        }
+    }
+
+
+    printf("第%d项的结果是：%d\n",n,f3);
+    return 0;
+}
+
+# c语言斐波那契数列的递归算法
+#include <stdio.h>
+
+void fabonaci(int i);
+
+double factorial(unsigned int i)
+{
+    if(i <= 1)
+    {
+        return 1;
+    }
+    return i * factorial(i - 1);
+}
+
+int fibonaci(int i) {
+    if(i==0){
+        return 0;
+    }
+    if(i==1){
+        return 1;
+    }
+    return fibonaci(i-1) + fibonaci(i-2);
+}
+
+int  main()
+{
+   /* int i = 15;
+    printf("1*...*%d=%f\n", i, factorial(i));
+    return 0;*/
+   for(int i=0;i<10;i++){
+       printf("%d ",fibonaci(i));
+   }
+
+}
+
+
+
+
+# c语言判断一个数是否回文数
+#include <stdio.h>
+ 
+int main()
+{
+    int n, reversedInteger = 0, remainder, originalInteger;
+ 
+    printf("输入一个整数: ");
+    scanf("%d", &n);
+ 
+    originalInteger = n;
+ 
+    // 翻转
+    while( n!=0 )
+    {
+        remainder = n%10;
+        reversedInteger = reversedInteger*10 + remainder;
+        n /= 10;
+    }
+ 
+    // 判断
+    if (originalInteger == reversedInteger)
+        printf("%d 是回文数。", originalInteger);
+    else
+        printf("%d 不是回文数。", originalInteger);
+    
+    return 0;
+}
+运行结果：
+
+输入一个整数: 12321
+12321 是回文数
 # c语言中的逗号表达式
 #include <stdio.h>
 //逗号表达式有什么用？在一个逗号表达式中有若干个表达式，但是整个表达式的值是最坏一项
@@ -454,6 +551,7 @@ int main() {
     return 0;
 
 }
+
 
 
 
