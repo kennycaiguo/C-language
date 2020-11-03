@@ -6,6 +6,32 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# c语言中的逗号表达式
+#include <stdio.h>
+//逗号表达式有什么用？在一个逗号表达式中有若干个表达式，但是整个表达式的值是最坏一项
+int main() {
+     int j=2;
+    int i=(j++,++j,j+2,j-3);//注意，++是会改变j的值，但是如果j+2的结果没有赋值给j，j仍然是原理的值
+
+    printf("i=%d\n",i); //i=1
+    return 0;
+}
+
+# c语言中++1和i++的区别
+#include <stdio.h>
+//++i与i++的区别,++i->整个表达式的值是i+1之后的值，i++->整个表达式的值是i+1之前的值
+int main() {
+    int i,j,k,l;
+    i=j=3;
+    k=++i;//4 =>i=i+1;k=i;先自增，在赋值
+    l=j++;//3 =>l=j;l=l+1；先赋值，在自增
+
+    printf("k=%d\n",k);//k=4
+    printf("l=%d\n",l);//l=3
+    return 0;
+}
+
+
 # 用c语言计算1+1/2+...+1/100的结果 （注意：在c语言在如果int j=1/2，那么j=0；正确的写法float j=1/2.0，那么j=0.5000）
 #include <stdio.h>
 //计算1+1/2+。。。+1/100
