@@ -6,6 +6,31 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# 用c语言计算1+1/2+...+1/100的结果 （注意：在c语言在如果int j=1/2，那么j=0；正确的写法float j=1/2.0，那么j=0.5000）
+#include <stdio.h>
+//计算1+1/2+。。。+1/100
+float FenshuAdd(){
+    int i=1;
+    float sum=0;
+    while(i<=100){
+        float j=1/(float )i;
+        sum+=j;
+        ++i;
+    }
+    /*for(i=1;i<=100;++i){
+        float j = 1/(float)i;
+        printf("j=%f\n",j);
+        sum+=j;
+       //printf("sum=%.mf\n",sum);
+    }*/
+
+    return sum;
+}
+int main() {
+    printf("1+1/2+..+1/100=%f\n",FenshuAdd());
+    return 0;
+}
+
 # c语言统计字符串出现的次数
 #include <stdio.h>
 #include <string.h>
