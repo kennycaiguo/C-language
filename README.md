@@ -6,6 +6,42 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# c语言判断一个数是否是素数
+
+#include <stdio.h>
+//判断一个数字是否是素数,也就是只能被1和它本身整除的数
+int isSuShu(int val){
+     if(val==1){ //如果val为1，就直接返回假，因为安装规定，1不是素数
+         return 0;
+     }
+     if(val==2){ //如果val是2，就直接返回真
+         return 1;
+     }
+
+    for(int i=2;i<val;i++){//否则，判断val是否能被2~val-1中的任何数整除，只要能被其中一个数整除，返回假
+        if(val%i==0){
+            return 0;
+        }
+
+    }
+
+    return 1;//如果遍历了2~val-1中的所有数，都不能整除，返回真
+}
+
+int main() {
+    int val=7;
+    int res=isSuShu(val);
+    if(res){
+        printf("%d是素数",val);
+    }else{
+        printf("%d不是素数",val);
+    }
+
+    return 0;
+}
+结果:
+7是素数
+
 # c语言斐波那契数列的非递归算法
  #include <stdio.h>
 
