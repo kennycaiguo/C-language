@@ -6,6 +6,7 @@
 # <a href="https://gitee.com/andyspider/Camkit">Camkit是一个摄像头相关的工具箱，使用C语言写成</a>
 # <a href="https://cloud.tencent.com/developer/article/1658626">c语言单链表的实现</a>
 # <a href="https://www.cnblogs.com/lifuqing/archive/2011/08/20/list.html">C语言单链表实现19个功能完全详解</a>
+# <a href="http://c.biancheng.net/cpp/u/hanshu/">C语言函数手册：c语言库函数大全|C语言标准函数库|c语言常用函数查询</a>
 # c语言判断一个数是否是素数
 
 #include <stdio.h>
