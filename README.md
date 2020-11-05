@@ -9,6 +9,28 @@
 # <a href="http://c.biancheng.net/cpp/u/hanshu/">C语言函数手册：c语言库函数大全|C语言标准函数库|c语言常用函数查询</a>
 # <a href="https://www.w3cschool.cn/cyykhsscsc/">C语言库函数速查手册-编程狮</a>
 # <a href="https://github.com/kennycaiguo/awesome-c-cn">C语言 资源大全中文版</a>
+
+# c语言的指针问题，vs版本，使用c++编译器，不过它是兼容c的，没有问题
+## 实例1：
+#include "stdafx.h"
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	//int arr[] = {1,2,3,4,5};
+	//int *p = arr; //注意：数组名代表数组首地址，此时p指向元素1
+	//p++; //指针向右移动一位，此时指针指向元素2
+	//printf("p指向的内容：%d", *p); //2
+	char *str = "hello world"; //字符串就是字符数组，数组名代表数组首地址
+	char *p1 = str;
+	//printf("p1指向的字符%c", *p1); //h，这里ok
+	p1++;
+	printf("p1指向的字符%s", p1);//ello world,%s表示输出从p1指向的位置开始输出剩余的所有字符，printf("p1指向的字符%s", *p1);会报错，因为p1指向的内容是一个字符
+	getchar();
+	return 0;
+}
+
+
 # c语言判断一个数是否是素数
 
 #include <stdio.h>
