@@ -41,6 +41,47 @@ int main() {
 }
 结果:
 7是素数
+# c语言输出0到指定数字val中的所有素数，vs版
+#include "stdafx.h"
+
+bool isPrimeNum(int val){
+	if (val == 1)return false;
+	for (int i = 2; i < val; i++){
+		if (val%i == 0){
+			return false;
+		}
+	}
+	return true;
+}
+void printPrimeNums(int val){// ## 输出0到指定数字中的所有素数的算法函数
+	int i, j;
+	for (i = 2; i < val; ++i){
+		for (j = 2; j < i; ++j)
+		{
+         if (i%j == 0){
+			 break;
+		  }
+		
+		}
+		if (j == i){
+			printf("%d\n", i);
+		}
+	}
+}
+int _tmain(int argc, _TCHAR* argv[]) //vs格式的文件cpp但是兼容c的
+{
+	/*int i = 7;
+	if (isPrimeNum(i)){
+		printf("%d is a prime number",i);
+	}
+	else
+	{
+		printf("%d is not a prime number",i);
+	}*/
+	printPrimeNums(100);
+	getchar();
+	return 0;
+}
 
 # c语言斐波那契数列的非递归算法
  #include <stdio.h>
