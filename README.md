@@ -26,6 +26,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	//printf("p1指向的字符%c", *p1); //h，这里ok
 	p1++;
 	printf("p1指向的字符%s", p1);//ello world,%s表示输出从p1指向的位置开始输出剩余的所有字符，printf("p1指向的字符%s", *p1);会报错，因为p1指向的内容是一个字符
+	char** p2 = &p1;
+	//printf("p2指向的内容%s",*p2);//hello world *p2相当于p1
+	printf("p2指向的内容%d", p2);//p2指向的内容18283652，这个相当于p1的地址，是一个整数
+	//printf("p2指向的内容%s", **p2); //报错**p2，这里是字符，不能用字符串的格式
+	//printf("p2指向的内容%c", **p2); //h **p2相当于p1指向的字符，所以要用%c
 	getchar();
 	return 0;
 }
