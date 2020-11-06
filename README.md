@@ -71,6 +71,26 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+# C语言指针实例3，利用指针输出数组的所有元素，vs2013版
+#include "stdafx.h"
+void outputArr(int* pArr, int len){
+	for (int i = 0; i < len; ++i)
+	{
+		printf("%d\n", *(pArr + i));//pArr[i]=*(pArr+i)
+
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int a[5] = { 11, 22, 33, 44, 55 };
+	//printf("%#X\n", a);//0XB3FC9C 数组名称保存的是第一个元素的地址,它是一个指针常量
+	//printf("%#X\n", &a[0]);//0XB3FC9C
+	//a = 55; //报错：不能给常量赋值
+	outputArr(a, 5);
+	getchar();
+	return 0;
+
 
 # c语言判断一个数是否是素数
 
