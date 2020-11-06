@@ -43,6 +43,31 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+# c语言指针问题 实例2
+#include "stdafx.h"
+void swap(int* p, int* q){ //这样子是不能互换a,b的值
+	int* t;
+	t = p;
+	p = q; //只是修改p的值，p指向的地址的值没有改变
+	q = t; //只是修改q的值，q指向的地址的值没有改变
+}
+
+void swap2(int* p, int* q){ //是才能互换a,b的值
+	int t;
+	t = *p; 
+	*p = *q;//不是要修改p的值，而是要修改p所指向的地址的值
+	*q = t;//不是要修改p的值，而是要修改p所指向的地址的值
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int a = 3, b = 5;
+	swap2(&a, &b);
+	printf("a=%d,b=%d", a, b);
+	getchar();
+	return 0;
+}
+
 
 # c语言判断一个数是否是素数
 
