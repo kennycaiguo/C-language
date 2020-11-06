@@ -12,6 +12,7 @@
 # <a href="https://www.cnblogs.com/traditional/p/11511685.html">《python解释器源码剖析》第0章--python的架构与编译python</a>
 # <a href="https://my.oschina.net/u/4042528/blog/3103418">教你阅读 Cpython 的源码（一）</a>
 # <a href="https://flaggo.github.io/python3-source-code-analysis/preface/code-organization/">Python 源代码的组织以及下载</a>
+# <a href="https://github.com/kennycaiguo/cpython">python源代码</a>
 # c语言的指针问题，vs版本，使用c++编译器，不过它是兼容c的，没有问题
 ## 实例1：
 #include "stdafx.h"
