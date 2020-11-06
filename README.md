@@ -9,7 +9,9 @@
 # <a href="http://c.biancheng.net/cpp/u/hanshu/">C语言函数手册：c语言库函数大全|C语言标准函数库|c语言常用函数查询</a>
 # <a href="https://www.w3cschool.cn/cyykhsscsc/">C语言库函数速查手册-编程狮</a>
 # <a href="https://github.com/kennycaiguo/awesome-c-cn">C语言 资源大全中文版</a>
-
+# <a href="https://www.cnblogs.com/traditional/p/11511685.html">《python解释器源码剖析》第0章--python的架构与编译python</a>
+# <a href="https://my.oschina.net/u/4042528/blog/3103418">教你阅读 Cpython 的源码（一）</a>
+# <a href="https://flaggo.github.io/python3-source-code-analysis/preface/code-organization/">Python 源代码的组织以及下载</a>
 # c语言的指针问题，vs版本，使用c++编译器，不过它是兼容c的，没有问题
 ## 实例1：
 #include "stdafx.h"
