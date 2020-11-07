@@ -15,7 +15,8 @@
 # <a href="https://github.com/kennycaiguo/cpython">python源代码</a>
 # <a href="https://juejin.im/post/6850037282893332487">写Java这么久，JDK源码编译过没？编译JDK源码踩坑纪实，老带劲了</a>
 # <a href="https://jdk.java.net/archive/">Jdk源码</a>
-# <a href="https://developer.aliyun.com/article/574676>Javac编译原理</a>
+# <a href="https://developer.aliyun.com/article/574676">Javac编译原理</a>
+# <a href="https://mp.weixin.qq.com/s/tXilzUzN7cDhnc3ztw4Vlw">这才是你需要的C语言、C++学习路线！</a>	
 # c语言的指针问题，vs版本，使用c++编译器，不过它是兼容c的，没有问题
 ## 实例1：
 #include "stdafx.h"
