@@ -610,6 +610,36 @@ int _tmain(int argc, _TCHAR* argv[])
 	getchar();
 	return 0;
 }
+# c语言实现动态数组的扩容
+#include "stdafx.h"
+#include<malloc.h>
+void printArr(int* pArr, int len){
+	for (int i = 0; i < len; i++){
+		printf("%2d ", pArr[i]);
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int len = 5;
+	int* dArr = (int*)malloc(sizeof(int)*len);//动态创建数组的原理
+	for (int i = 0; i <5; i++){
+		dArr[i] = i*i;
+	}
+	
+	printArr(dArr,len);
+	printf("\n");
+	dArr = (int*)realloc(dArr, 40); //数组动态扩容，可以保留原来的数据，但是必须要接收其返回值，不接受，结果就不正确
+	/*printf("%3d", dArr[0]);
+	printf("%3d", dArr[1]);
+	printf("%3d", dArr[2]);
+	printf("%3d", dArr[3]);
+	printf("%3d", dArr[4]);*/
+	printArr(dArr, 5);
+	free(dArr);
+	getchar();
+	return 0;
+}
 
 # C语言链表的基本操作
 ## 实例1
