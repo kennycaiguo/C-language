@@ -584,6 +584,33 @@ void main(){
      showArrayElemants(a,size);//size跟数组的元素个数必须一样
 }
  
+# c语言动态创建一维数组，vs2013版本
+#include "stdafx.h"
+#include<malloc.h>
+void printArr(int* pArr, int len){
+	for (int i = 0; i < len; i++){
+		printf("%2d ", pArr[i]);
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int len = 5;
+	int* dArr = (int*)malloc(sizeof(int)*len);//动态创建数组的原理
+	for (int i = 0; i <5; i++){
+		dArr[i] = i;
+	}
+	/*printf("%2d", dArr[0]);
+	printf("%2d", dArr[1]);
+	printf("%2d", dArr[2]);
+	printf("%2d", dArr[3]);
+	printf("%2d", dArr[4]);*/
+	printArr(dArr,len);
+	free(dArr);
+	getchar();
+	return 0;
+}
+
 # C语言链表的基本操作
 ## 实例1
   #include<stdio.h>
