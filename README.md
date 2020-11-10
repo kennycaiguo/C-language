@@ -18,6 +18,7 @@
 # <a href="https://developer.aliyun.com/article/574676">Javac编译原理</a>
 # <a href="https://mp.weixin.qq.com/s/tXilzUzN7cDhnc3ztw4Vlw">这才是你需要的C语言、C++学习路线！</a>	
 # <a href="http://c.biancheng.net/cpp/html/2790.html">C语言实现动态数组，克服静态数组大小固定的缺陷</a>
+# <a hredf="https://blog.csdn.net/weibo1230123/article/details/81427666">C语言内存管理超详解</a>
 # 注意：c语言严重错误代码
          //int nums[5] = {1,2,3,5,6};
 	//int* pNum = (int*)realloc(nums, 10);不能将一个静态数组的内存空间进行扩容！！！
