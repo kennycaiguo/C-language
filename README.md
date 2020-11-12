@@ -647,6 +647,47 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+# c语言结构体的使用，注意两种初始化方法的区别
+#include "stdafx.h"
+#include <string.h>
+
+typedef struct Stu
+{
+	char* name;
+	int age;
+	char* gender;
+	float score;
+	void sayHi(){ //结构体里面是可以有方法的
+		printf("hello i am %s\n", name);
+	};
+	void setName(char* newname){
+		name = newname;
+	};
+	 
+}Student;
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	Student s = { "jack", 18, "male", 78.5 }; //结构体初始化方式一,这个比较好
+	//printf("%s:%d:%s:%f", s.name,s.age,s.gender,s.score); //jack
+	printf("hello i am %s,i am %d years old,i am a %s,my score is %f", s.name, s.age, s.gender, s.score); //ok
+	//Stu s2;//结构体初始化方式二，这个不太好
+	//s2.age = 18;
+	//s2.name = "mary";
+	//s2.gender = "female";
+	//s2.score = 66.6;
+	// printf("%s\n", s2); //mary
+	// s2.sayHi();
+	// s2.setName("Paula");
+	// s2.sayHi();
+	/* char* name = s2.name;
+	 int age = s2.age;
+	 char* gender = s2.gender;
+	 float score = s2.score;
+	 printf("hello i am %s,i am %d years old,i am a %s,my score is %s", name, age, gender, score);*/ //报错
+	getchar();
+	return 0;
+}
 # C语言链表的基本操作
 ## 实例1
   #include<stdio.h>
