@@ -673,8 +673,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("hello i am %s,i am %d years old,i am a %s,my score is %f", s.name, s.age, s.gender, s.score); //ok
 	//Stu s2;//结构体初始化方式二，这个不太好
 	//s2.age = 18;
-	//s2.name = "mary";
-	//s2.gender = "female";
+	//s2.name = "mary"; //这里要修改为 strcpy(s2.name,"mary')
+	//s2.gender = "female"; //这里要修改为 strcpy(s2.gender,"female')
 	//s2.score = 66.6;
 	// printf("%s\n", s2); //mary
 	// s2.sayHi();
