@@ -540,15 +540,16 @@ int getMax(int* parr,int  n){
 	return max;
 }
 
-void sort(int* pArr, int n){//冒泡排序法
-	int tmp = 0;
-	for (int i = 0; i < n; i++){
-		for (int j = 0; j < i-1; j++){
-			if (*(pArr + j) > *(pArr + (j + 1))){
-				tmp = *(pArr + j);
-				*(pArr + j) = *(pArr + (j+ 1));
-				*(pArr + (j + 1)) = tmp;
+void sort(int* a, int len){
+	int t;
+	for (int i = 0; i<len - 1; ++i){
+		for (int j = 0; j<len-1-i; ++j){
+			if (a[j]>a[j + 1]){
+               t = a[j];
+			   a[j] = a[j + 1];
+			   a[j + 1] = t;
 			}
+			
 		}
 	}
 }
