@@ -525,6 +525,49 @@ int main(){
    return 0;
 }
 
+# c语言使用冒泡排序法实现数组的排序，vs2013版本
+#include "stdafx.h"
+#include<malloc.h>
+
+int getMax(int* parr,int  n){
+	int max = *parr;
+	for (int i = 0; i < n; i++){
+		if (max < *(parr + i)){
+			max = *(parr + i);
+		}
+
+	}
+	return max;
+}
+
+void sort(int* pArr, int n){//冒泡排序法
+	int tmp = 0;
+	for (int i = 0; i < n; i++){
+		for (int j = 0; j < i-1; j++){
+			if (*(pArr + j) > *(pArr + (j + 1))){
+				tmp = *(pArr + j);
+				*(pArr + j) = *(pArr + (j+ 1));
+				*(pArr + (j + 1)) = tmp;
+			}
+		}
+	}
+}
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int arr[6] = { 2, 8, -8, 0, 10, 11 };
+	printf("max=%d\n", getMax(arr,6));
+	sort(arr,6);
+	for (int i = 0; i < 6; i++){
+		printf(" arr[%d] = %2d", i,arr[i]);
+	}
+	getchar();
+	return 0;
+}
+
+结果：
+max=11
+ arr[0] = -8 arr[1] =  0 arr[2] =  2 arr[3] =  8 arr[4] = 10 arr[5] = 11
+
 
 # c语言操作Oracle数据库
 C语言操作Oracle数据库，开发工具：Clion 1， 将I:\Software\oracle数据库\c语言操作Oracle数据库的依赖库项目下面的ocilib4.7.0文件夹复制到d:\programs(最终变成D:\Programs\ocilib4.7.0) 2， 在Clion中创建一个c语言项目 3， 配置CmakeList.txt文件，内容如下 cmake_minimum_required(VERSION 3.16) project(oracleOp C)
