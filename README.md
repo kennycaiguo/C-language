@@ -45,6 +45,16 @@ int _tmain(int argc, _TCHAR* argv[])
 
 得到的结果是 0XFFFFFFFD（1111 1111 1111 1101的十六进制写法）
 
+实例2
+int _tmain(int argc, _TCHAR* argv[])
+{
+	 
+	int a = 0xFFFFFFEF;//-17
+	printf("%d", a);
+	getchar();
+	return 0;
+}
+结果：-17
 # c语言的指针问题，vs版本，使用c++编译器，不过它是兼容c的，没有问题
 ## 实例1：
 #include "stdafx.h"
