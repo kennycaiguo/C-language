@@ -26,7 +26,7 @@
          //int nums[5] = {1,2,3,5,6};
 	//int* pNum = (int*)realloc(nums, 10);不能将一个静态数组的内存空间进行扩容！！！
 	
-# c语言位运算实例
+# c语言位运算与逻辑运算实例
 #include "stdafx.h"
 //位运算符实例
 
@@ -42,6 +42,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//printf("%d,%d", ~j,~k); //~20 =-21,~1=-2;
 	//printf("%d", ~(-j)); //~(-20)=19;
 	printf("%d", ~(-k)); //~(-1)=0;
+	printf("%d\n", j&&k); //1 逻辑与，j和k都是真，结果位真
+	printf("%d", j||k); //1 逻辑或，只要有一个为真，就为真
 	getchar();
 	return 0;
 }
