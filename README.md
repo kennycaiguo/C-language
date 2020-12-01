@@ -27,6 +27,33 @@
 	//int* pNum = (int*)realloc(nums, 10);不能将一个静态数组的内存空间进行扩容！！！
         //int* p；//*p=5；这个是错误的必须先要保证p指向合法的单元，然后才能这样子赋值，也就是说p必须先初始化
 	
+# 在vs2013中将汇编代码嵌入c语言源程序中：
+
+#include "stdafx.h"
+#include<stdlib.h>
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int a;
+	int b;
+	int c;
+
+	__asm
+	{
+		mov a, 3
+		mov b, 4
+		mov eax, a
+		add eax, b
+		mov c, eax
+	}
+	printf("result=%d\n", c);
+	system("pause");
+	return 0;
+}
+
+结果：result=7
+
 # 注意:c语言中，二进制位全部位零的含义：
 ## 1.数值零
 ## 2.字符串的结束标记'\0'
