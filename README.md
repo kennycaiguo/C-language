@@ -77,7 +77,7 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 
 int main()
 {
-    //在c语言中，如果想得到小数商，则相除的两个数必须至少有一个是小数
+    //在c语言中，如果想得到小数商，则相除的两个数必须至少有一个是小数，整数变为小有一个小技巧，就是将其乘于1.0
     int a=5;
      float b=3.0;
     float c=a/b;
