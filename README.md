@@ -54,6 +54,24 @@ int _tmain(int argc, _TCHAR* argv[])
 
 结果：result=7
 
+# c语言利用ascii码输出26个小写字母
+#include <stdio.h>
+
+int main()
+{
+    char ch;
+    int i;
+    for(i=97;i<=123;i++){
+        ch=i;//注意：char类型的本质是8为的整数，所以可以直接给它赋整数值
+        printf("%c ",ch);//这里可以将26个小写字母按照顺序输出到屏幕
+    }
+
+    return 0;
+}
+
+结果：
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+
 # 注意:c语言中，二进制位全部位零的含义：
 ## 1.数值零
 ## 2.字符串的结束标记'\0'
