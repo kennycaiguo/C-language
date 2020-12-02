@@ -72,6 +72,20 @@ int main()
 结果：
 a b c d e f g h i j k l m n o p q r s t u v w x y z
 
+# c语言中，两数相除得到小数的问题
+#include <stdio.h>
+
+int main()
+{
+    //在c语言中，如果想得到小数商，则相除的两个数必须至少有一个是小数
+    int a=5;
+     float b=3.0;
+    float c=a/b;
+    printf("result=%f",c);
+
+    return 0;
+}
+
 # 注意:c语言中，二进制位全部位零的含义：
 ## 1.数值零
 ## 2.字符串的结束标记'\0'
