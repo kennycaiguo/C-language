@@ -93,7 +93,7 @@ int main()
    //后置++
      int a=1;
      int b=0;
-     b=a++;
+     b=a++; //注意，这里跟 a++;b=a;是有区别的，应该是：b=a;a++;
      printf("a=%d,b=%d",a,b);//a=2,b=1
      //前置++
      int x=1;
