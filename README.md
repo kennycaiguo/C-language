@@ -86,6 +86,23 @@ int main()
     return 0;
 }
 
+# 后置++和前置++的区别
+#include<stdio.h>
+int main()
+{
+   //后置++
+     int a=1;
+     int b=0;
+     b=a++;
+     printf("a=%d,b=%d",a,b);//a=2,b=1
+     //前置++
+     int x=1;
+     int y=++x;
+      printf("x=%d,y=%d",x,y);//x=2,y=2
+
+    return 0;
+}
+
 # 注意:c语言中，二进制位全部位零的含义：
 ## 1.数值零
 ## 2.字符串的结束标记'\0'
