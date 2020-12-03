@@ -127,6 +127,7 @@ void reversearray2(int* pArr,int n){
     for(i=0;i<n;i++){
         pArr[i] =pTemarr[i];
     }
+    free(pTemarr);//没有需要再使用这个内存空间，所以就把它释放，以防内存泄漏
     return ;
 }
 int main()
