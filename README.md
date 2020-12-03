@@ -107,7 +107,7 @@ int main()
 #include<stdio.h>
 #include<malloc.h>
 
-//该函数实现数组反转功能
+//该函数实现数组反转功能，写法1，有返回值
 int* reversearray(int* pArr,int n){
     int* pTemarr=(int*)malloc(sizeof(int)*n);
     int i,j;
@@ -117,7 +117,18 @@ int* reversearray(int* pArr,int n){
 
     return pTemarr;
 }
-
+//写法2，没有返回值
+void reversearray2(int* pArr,int n){
+    int* pTemarr=(int*)malloc(sizeof(int)*n);
+    int i,j;
+    for(i=n-1,j=0;i>0,j<n;i--,j++){
+        pTemarr[j] = pArr[i];
+    }
+    for(i=0;i<n;i++){
+        pArr[i] =pTemarr[i];
+    }
+    return ;
+}
 int main()
 {
    int arr[5]={1,2,3,4,5};
