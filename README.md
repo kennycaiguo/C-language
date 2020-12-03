@@ -103,6 +103,33 @@ int main()
     return 0;
 }
 
+# c语言实现数组反转功能
+#include<stdio.h>
+#include<malloc.h>
+
+//该函数实现数组反转功能
+int* reversearray(int* pArr,int n){
+    int* pTemarr=(int*)malloc(sizeof(int)*n);
+    int i,j;
+    for(i=n-1,j=0;i>0,j<n;i--,j++){
+        pTemarr[j] = pArr[i];
+    }
+
+    return pTemarr;
+}
+
+int main()
+{
+   int arr[5]={1,2,3,4,5};
+    int *parr= reversearray(arr,5);
+    int i;
+    for(i=0;i<5;i++){
+        printf("parr[%d]=%d ",i,parr[i]);
+    }
+    return 0;
+}
+结果：
+parr[0]=5 parr[1]=4 parr[2]=3 parr[3]=2 parr[4]=1
 # 注意:c语言中，二进制位全部位零的含义：
 ## 1.数值零
 ## 2.字符串的结束标记'\0'
