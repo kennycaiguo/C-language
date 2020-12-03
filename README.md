@@ -130,6 +130,21 @@ void reversearray2(int* pArr,int n){
     free(pTemarr);//没有需要再使用这个内存空间，所以就把它释放，以防内存泄漏
     return ;
 }
+# //写法3，使用while循环，非常好
+void reversearray3(int* pArr,int n){
+    int tmp;
+    int i=0;
+    int j=n-1;
+    while(i<j){
+        tmp=pArr[j];
+        pArr[j]=pArr[i];
+        pArr[i]=tmp;
+        i++;
+        j--;
+    }
+ 
+}
+
 int main()
 {
    int arr[5]={1,2,3,4,5};
