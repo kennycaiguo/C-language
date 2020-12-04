@@ -1,4 +1,5 @@
 # C-language
+# <a href="https://zhuanlan.zhihu.com/p/36654741">使用 Visual Studio Code 搭建 C/C++ 开发和调试环境</a>
 # <a href="https://zhuanlan.zhihu.com/p/84828775">c语言操作mysql数据库</a>
 # <a href="https://www.jianshu.com/p/5b80aa05199a">c语言操作mysql数据库</a>
 # <a href="https://www.w3cschool.cn/cadvance/izeb1j6f.html">C语言 函数指针</a>
