@@ -73,7 +73,7 @@ int main()
 结果：
 a b c d e f g h i j k l m n o p q r s t u v w x y z
 
-# 用c语言实现计算字符串长度的函数
+# 用c语言实现计算字符串长度的函数,其实使用sizeof较好
 int getStringLength(char* s){ //字节实现的计算字符串长度的函数
 	int i = 0;
 	while (*s != '\0'){
@@ -155,7 +155,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+# c语言产生随机数的简单例子 //vscode版本，gcc编译
+#include<stdio.h>
+#include<stdlib.h>
 
+int main() {
+    srand(rand());
+    int num = rand();//不一定需要seed，没有也可以
+    printf("random number:%d",num);
+    return 0;
+}
 
 
 # c语言中，两数相除得到小数的问题
