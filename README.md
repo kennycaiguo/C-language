@@ -72,6 +72,7 @@ int main()
 
 结果：
 a b c d e f g h i j k l m n o p q r s t u v w x y z
+
 # 用c语言实现计算字符串长度的函数
 int getStringLength(char* s){ //字节实现的计算字符串长度的函数
 	int i = 0;
@@ -81,6 +82,81 @@ int getStringLength(char* s){ //字节实现的计算字符串长度的函数
 	}
 	return i;
 }
+# c语言实现将一个小写的字符转换为大写和将一个大写的字符串转为小写，vs2013版本
+#include "stdafx.h"
+#include<string.h>
+#include<malloc.h>
+
+int getStringLength(char* s){ //字节实现的计算字符串长度的函数
+	int i = 0;
+	while (*s != '\0'){
+		++i;
+		s++;
+	}
+	return i;
+}
+
+char* toUpper(char* s){
+	char tmp = 0;
+	int len = strlen(s);
+	char* res = (char*)malloc(sizeof(char)*len+1);//需要加1，存放0
+	int i = 0;
+	while (*s != '\0'){
+		if (*s >= 97 && *s <= 123){
+             tmp = *s;
+		     tmp = tmp - 32;
+		     res[i] = tmp;
+		}
+		else{
+			res[i] = *s;
+		}
+		s++;
+		i++;
+	}
+	if (res[len] != 0){ //注意这里没有'\0',因为根据循环条件当*s='\0'时，循环结束了
+		res[len] = 0;
+	}
+	return res;
+}
+
+char* toLower(char* s){
+	char tmp = 0;
+	int len = strlen(s);
+	char* res = (char*)malloc(sizeof(char)*len + 1);//需要加1，存放0
+	int i = 0;
+	while (*s != '\0'){
+		if (*s >= 65 && *s <= 91){
+			tmp = *s;
+			tmp = tmp +32;
+			res[i] = tmp;
+		}
+		else{
+			res[i] = *s;
+		}
+		s++;
+		i++;
+	}
+	if (res[len] != 0){ //注意这里没有'\0',因为根据循环条件当*s='\0'时，循环结束了
+		res[len] = 0;
+	}
+	return res;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	char* s = "hello,busty girls,i am coming!!!";//这个是字符串
+	 
+	/*printf("the length is %d\n", getStringLength(s)); //利用自己的函数实现计算字符串长度，不包含'\0'
+	printf("the length is %d", strlen(s));*/
+	char* s2 = "GIVE ME YOU PUSSY ,LALALA..."; 
+	printf("result=%s\n", toUpper(s));
+	printf("result=%s\n", toLower(s2));
+	getchar();
+	return 0;
+}
+
+
+
 
 # c语言中，两数相除得到小数的问题
 #include <stdio.h>
