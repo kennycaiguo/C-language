@@ -1,0 +1,41 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:/tools/mingw64/include",
+                "D:/tools/mingw64/opt/include",
+                "D:/tools/mingw64/opt/lib/libffi-3.2.1/include",
+                "D:/tools/mingw64/x86_64-w64-mingw32/include",
+                "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed",
+                "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/install-tools/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    // 下面路径中的 D:/App/MinGw 部分需要替换成你的 MinGw-w64 安装路径
+                    "D:/tools/mingw64/include",
+                    "D:/tools/mingw64/opt/include",
+                    "D:/tools/mingw64/opt/lib/libffi-3.2.1/include",
+                    "D:/tools/mingw64/x86_64-w64-mingw32/include",
+                    "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include",
+                    "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed",
+                    "D:/tools/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/install-tools/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
