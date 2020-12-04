@@ -72,6 +72,15 @@ int main()
 
 结果：
 a b c d e f g h i j k l m n o p q r s t u v w x y z
+# 用c语言实现计算字符串长度的函数
+int getStringLength(char* s){ //字节实现的计算字符串长度的函数
+	int i = 0;
+	while (*s != '\0'){
+		++i;
+		s++;
+	}
+	return i;
+}
 
 # c语言中，两数相除得到小数的问题
 #include <stdio.h>
