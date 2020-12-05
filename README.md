@@ -171,11 +171,7 @@ int main() {
 #include<time.h>
 
 int main() {
-  
-     time_t t;
-     t = time(NULL);
-     int x = time(&t);
-     srand(x);
+     srand(time(NULL));
     for (int i = 0; i < 5; i++)
     { 
          
