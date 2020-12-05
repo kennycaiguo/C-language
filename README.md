@@ -155,7 +155,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-# c语言产生随机数的简单例子 //vscode版本，gcc编译
+# c语言产生随机数的简单例子1. //vscode版本，gcc编译，不够好，每一次都产生一样的数组，实例2会好一点，因为使用时间戳，保证每一次都不一样
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -165,7 +165,36 @@ int main() {
     printf("random number:%d",num);
     return 0;
 }
+# c语言随机数实例2，vscode开发
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
+int main() {
+  
+     time_t t;
+     t = time(NULL);
+     int x = time(&t);
+     srand(x);
+    for (int i = 0; i < 5; i++)
+    { 
+         
+         int num = rand(); 
+         printf("num=%d ,",num);
+    }
+    
+    
+    return 0;
+}
+结果：测试了四次
+第一次：
+num=10289 ,num=28007 ,num=13881 ,num=30550 ,num=29303 ,
+第二次：
+num=10347 ,num=24870 ,num=7756 ,num=4937 ,num=18357 ,
+第三次：
+num=10413 ,num=10462 ,num=4591 ,num=27452 ,num=28040 ,
+第四次：
+num=10468 ,num=29345 ,num=13370 ,num=10544 ,num=6780 ,
 
 # c语言中，两数相除得到小数的问题
 #include <stdio.h>
