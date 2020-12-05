@@ -171,7 +171,9 @@ int main() {
 #include<time.h>
 
 int main() {
-     srand(time(NULL));
+
+    srand((unsigned int)time(NULL));
+     
     for (int i = 0; i < 5; i++)
     { 
          
