@@ -155,6 +155,41 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+#c语言实现将用户输出的字符串保存到一个文本文件中，输入exit显示good bye，如何按回车退出
+
+#include "stdafx.h"
+#include<string.h>
+ 
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	FILE* f;
+	f = fopen("input.txt", "w+");
+	char input[50] = "\0";
+	 
+	printf("请输入内容,exit退出：");
+	int i = 0;
+	while (strcmp(input, "exit") != 0)
+	{   
+		gets(input);
+		 
+		if (strcmp(input, "exit") != 0){
+			 fwrite(input, 1, strlen(input), f); 
+			 fprintf(f, "\n");
+			memset(input, '\0', 50);
+		}
+		else{ 
+			printf("good bye!");
+			fflush(f);
+			fclose(f);
+		}
+	}
+
+	getchar();
+	return 0;
+}
+
+
 # c语言产生随机数的简单例子1. //vscode版本，gcc编译，不够好，每一次都产生一样的数组，实例2会好一点，因为使用时间戳，保证每一次都不一样
 #include<stdio.h>
 #include<stdlib.h>
