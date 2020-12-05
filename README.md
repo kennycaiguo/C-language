@@ -263,7 +263,7 @@ int main() {
                 printf("第%d位数字正确\n",i+1);
                 n++;
             }
-            if(n==4){
+            if(4==n){
                 exit(0);
             }
         }
