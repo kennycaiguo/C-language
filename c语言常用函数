@@ -59,7 +59,7 @@ int main()
 int main() {
     char src[100]="hello girls";
     char dest[100]={0};
-    strcpy(dest,src); //注意：这里不能使用dest=src来赋值，因为他们是指针常量，不能给常量赋值，只能将src作为数组来用
+    strcpy(dest,src); //注意：这里不能使用dest=src来赋值，因为他们是指针常量，不能给常量赋值，只能将src作为数组来用,也可以使用strncpy，指定需要拷贝多少个字符
     printf("dest=%s",dest);
     return 0;
 }
@@ -84,7 +84,7 @@ int main() {
 int main() {
     char a[]="Hello";
     char b[]="hello";
-    int flag = strcmp(a,b);
+    int flag = strcmp(a,b); //也可以使用strncmp(a,b,3)指定比较多少个字符
     if (flag>0)
     {
           printf("a[] > b[]");
