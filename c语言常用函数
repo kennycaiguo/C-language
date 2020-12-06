@@ -63,3 +63,16 @@ int main() {
     printf("dest=%s",dest);
     return 0;
 }
+
+## 注意，strcpy遇到\0，就会结束，也就是说如果一个字符串里面有多个\0,strcpy只会复制第一个\0以前的内容包含这个\0
+如：
+#include<stdio.h>
+#include<string.h>
+
+int main() {
+    char src[100]="hello\0 girls";
+    char dest[100]={0};
+    strcpy(dest,src);
+    printf("dest=%s",dest); //结果：dest=hello
+    return 0;
+}
