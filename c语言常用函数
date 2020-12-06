@@ -20,7 +20,7 @@ int main() {
 int main() {
  
      char str[]="hello girls";
-     int len = strlen(str);//这个函数得到的是不包含结束符的长度，也就是说实际长度要在这个的基础上加1
+     int len = strlen(str);//这个函数得到的是不包含结束符的长度，也就是说实际长度要在这个的基础上加1，还有，这个函数获取不到"\0hello"的长度的，而sizeof没有这个问题
      printf("len=%d\n",len);
      printf("size=%d\n",sizeof(str));//sizeof函数得到的是实际长度，包含换行符
     return 0;
