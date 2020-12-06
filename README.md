@@ -156,7 +156,22 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-#c语言实现将用户输出的字符串保存到一个文本文件中，输入exit显示good bye，如何按回车退出
+# c语言字符串的输出方式
+#include<stdio.h>
+
+//c语言中，字符串的输出有三种方式:printf("str=%s",str)，puts(str),fputs(str,stdout)
+int main() {
+    printf("请输入一句话：");
+    char str[100]={0};
+    fgets(str,100,stdin);
+    //printf("str=%s",str);
+   // puts(str);
+   fputs(str,stdout);
+    return 0;
+}
+
+
+# c语言实现将用户输出的字符串保存到一个文本文件中，输入exit显示good bye，如何按回车退出
 
 #include "stdafx.h"
 #include<string.h>
