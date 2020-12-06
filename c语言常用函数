@@ -12,7 +12,7 @@ int main() {
     return 0;
 }
 
-# strlen函数和sizeof函数的区别
+# strlen函数和sizeof函数的区别(1)
 #include<stdio.h>
 #include<string.h>
 
@@ -23,5 +23,31 @@ int main() {
      int len = strlen(str);//这个函数得到的是不包含结束符的长度，也就是说实际长度要在这个的基础上加1，还有，这个函数获取不到"\0hello"的长度的，而sizeof没有这个问题
      printf("len=%d\n",len);
      printf("size=%d\n",sizeof(str));//sizeof函数得到的是实际长度，包含换行符
+    return 0;
+}
+# strlen函数和sizeof函数的区别(2)
+#include<stdio.h>
+#include<string.h>
+
+//c语言中，字符串的输出有三种方式:printf("str=%s",str)，puts(str),fputs(str,stdout)
+int main() {
+ 
+     char str[]="\0hello";
+     int len = strlen(str);//这个函数得到的是不包含结束符的长度，也就是说实际长度要在这个的基础上加1，还有，这个函数获取不到"\0hello"的长度的，而sizeof没有这个问题
+     printf("len=%d\n",len); //0
+     printf("size=%d\n",sizeof(str));//7('\0'+hello+'\0') sizeof函数得到的是实际长度，包含换行符
+    return 0;
+}
+# strlen函数和sizeof函数的区别(3)
+#include<stdio.h>
+#include<string.h>
+
+//c语言中，字符串的输出有三种方式:printf("str=%s",str)，puts(str),fputs(str,stdout)
+int main()
+{
+    char str[100]="mike";
+     int len = strlen(str);
+     printf("len=%d\n",len); //4
+     printf("size=%d\n",sizeof(str)); //100
     return 0;
 }
