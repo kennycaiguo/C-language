@@ -23,6 +23,7 @@
 # <a href="https://blog.csdn.net/second60/article/details/79946310">C语言内存模型详解</a>
 # <a href="https://zhoushisong.cn/2018/01/09/C%E8%AF%AD%E8%A8%80%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/">C语言内存详解 </a>
 # <a href="https://blog.csdn.net/weixin_43701019/article/details/99546686?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">用C语言实现可添加删除元素的数组（两种方式，数组和指针）</a>
+# <a href="https://blog.csdn.net/hcu5555/article/details/20555229">gets函数完美替代</a>
 # 注意：c语言严重错误代码
          //int nums[5] = {1,2,3,5,6};
 	//int* pNum = (int*)realloc(nums, 10);不能将一个静态数组的内存空间进行扩容！！！
