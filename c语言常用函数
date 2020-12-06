@@ -1,0 +1,13 @@
+# c语言输出字符串
+#include<stdio.h>
+
+//c语言中，字符串的输出有三种方式:printf("str=%s",str)，puts(str),fputs(str,stdout)
+int main() {
+    printf("请输入一句话：");
+    char str[100]={0};
+    fgets(str,100,stdin);
+    //printf("str=%s",str); //不会自动换行
+   // puts(str); //这个会在屏幕添加换行
+   fputs(str,stdout); //不会自动换行
+    return 0;
+}
