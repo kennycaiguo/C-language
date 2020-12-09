@@ -151,3 +151,29 @@ int main(int argc, char const *argv[])
 a=50,b=60,c=79
 ===================================
 a=100,b=200,c=300
+
+# c语言字符查找函数strchr的应用：在一个字符串在提取所有指定的字符
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char const *argv[])
+{
+    char src[]="hello girls i want to say hello and have fun with you"; //将这句话中的所有'h'提取出来
+    char* p=strchr(src,'h');
+    char dst[20]={0};
+    int i=0;
+    if(p==NULL){
+        printf("你查找的字符不存在\n");
+    } else
+    {
+       while (p!=NULL)
+       {
+           printf("%c ",*p);
+           p =strchr(p+1,'h'); //注意这里p指针需要加1，否则会出现死循环
+       }
+       
+    }
+    
+    return 0;
+}
+结果： h h h h 
