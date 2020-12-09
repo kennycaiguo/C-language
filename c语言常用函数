@@ -112,3 +112,14 @@ int main() {
     return 0;
 }
 
+//sprintf函数的用法
+#include<stdio.h>
+
+int main(int argc, char const *argv[])
+{
+     int score =89;
+     char buf[100]={0} ;
+     sprintf(buf,"you score is %d\n",score);
+     printf(buf);
+    return 0;
+}
