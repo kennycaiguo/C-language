@@ -188,7 +188,7 @@ int main(int argc, char const *argv[])
     char src[]="hello girls  hello sexies and hello lovers ,have fun and say hello to you mom";
     char* p=strstr(src,"hello");
     char tmp[20];
-    char dst[100]={0};
+     
     int i=0;
     if(p==NULL){
         printf("你查找的字符串不存在\n");
