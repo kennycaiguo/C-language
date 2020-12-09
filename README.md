@@ -1314,9 +1314,37 @@ int main() {
 
 }
 
+# c语言利用sscanf和sprinf函数巧妙格式化输出当前时间（vscode版本）
 
+#include <stdio.h>
+#include <time.h>
 
-
+int main(int argc, char const *argv[])
+{
+    time_t timep;
+    struct tm *p;
+    time(&timep);
+    p = localtime(&timep);
+    char * strtime=asctime(p); //这个格式不太好，我们需要对它进行处理
+    //printf("time now is %d/%d/%d %d:%d:%d",p->tm_mday,p->tm_mon,p->tm_year,p->tm_hour,p->tm_min,p->tm_sec);
+    printf("time now is %d/%d/%d %d:%d:%d\n",p->tm_hour,p->tm_min,p->tm_sec);
+    printf("%s",strtime);
+    char weekday[10];
+    char month[5];
+    char day[5];
+    int hour,min,sec;
+    int year;
+    sscanf(strtime,"%s %s %s %d:%d:%d %d",weekday,month,day,&hour,&min,&sec,&year);
+    char mytime[100];
+    sprintf(mytime,"%s/%s/%d %s %d:%d:%d",day,month,year,weekday,hour,min,sec);
+    printf("time :%s",mytime);
+    //printf("time :%s/%s/%d %s %d:%d:%d",day,month,year,weekday,hour,min,sec);
+    return 0;
+}
+结果：
+time now is 13/56/38 12260032:0:12260032
+Wed Dec 09 13:56:38 2020
+time :09/Dec/2020 Wed 13:56:38 //这个就是我们需要的结果
 
 
 
