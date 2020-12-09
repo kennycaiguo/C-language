@@ -231,3 +231,21 @@ int main(int argc, char const *argv[])
 }
 
 结果：res=sexy licks ,res=nice boots ,res=big butt ,res=long legs ,
+
+# atoi，atof，atol函数
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[])
+{
+    char src[]="100";
+    char src1[]="100.12";
+    int res = atoi(src);
+   float fres = atof(src1);
+    printf("res= %d\n",res);
+    printf("fres= %f",fres);
+    return 0;
+}
+
+结果：res= 100
+fres= 100.120003
