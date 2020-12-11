@@ -1,0 +1,5 @@
+注意：
+return 和exit（在stdlib.h中定义）的区别：
+return：只有在main函数在执行return；程序才会结束，在其他函数在执行return，只是这个函数结束，只要main函数的return不
+执行，主程序不会结束。
+exit：就算在其他程序里面执行exit，而main函数有调用了这个函数，主程序也会结束，也就是说exit是结束整个进程的。
