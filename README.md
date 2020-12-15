@@ -505,6 +505,26 @@ int _tmain(int argc, _TCHAR* argv[])
 	outputArr(a, 5);
 	getchar();
 	return 0;
+}
+
+# c语言中的指针数组实例 ，vscode版本
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    int a[3] = {10, 20, 33};
+    int *p[3]; //指针数组
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        p[i] = &a[i];
+        /* code */
+        //printf("*p[%d]=%d,", i, *p[i]);//这个跟下面的写法等价
+        printf("*p[%d]=%d,", i, *(*(p + i))); //注意：指针数组的数组名其实是指针的指针
+    }
+
+    return 0;
+}
 
 
 # c语言判断一个数是否是素数
