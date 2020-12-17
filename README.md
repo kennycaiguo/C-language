@@ -97,6 +97,7 @@ int getStringLength(char* s){ //字节实现的计算字符串长度的函数
 	return i;
 }
 
+
 char* toUpper(char* s){
 	char tmp = 0;
 	int len = strlen(s);
@@ -155,6 +156,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	getchar();
 	return 0;
 }
+
+# c语言字符指针的简单应用
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    char str[20] = {0};
+    char *p = str;
+    int i;
+    char j;
+    for (i = 0, j = 'a'; i < 10, j < 'j'; i++, j++)
+    {
+        //str[i] = j;
+        *(p + i) = j;
+    }
+    printf("str=%s", str);
+    return 0;
+}
+## 结果：str=abcdefghi
 
 # c语言字符串的输出方式
 #include<stdio.h>
