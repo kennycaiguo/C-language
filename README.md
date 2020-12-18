@@ -226,7 +226,38 @@ int main(int argc, char const *argv[])
     printf("num3=%d\n", my_atoi("123"));
     return 0;
 }
+结果：num1=123
+     num2=-123
+     num3=123
 
+# 计算字符串“11，22，33，44，55，66”的和
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int get_sum(char *arr)
+{
+    int sum = 0;
+
+    char *p = NULL;
+    p = strtok(arr, ",");
+    while (p != NULL)
+    {
+        sum += atoi(p);
+        p = strtok(NULL, ",");
+    }
+    return sum;
+}
+int main(int argc, char const *argv[])
+{
+    //char a[100] = "12,43,65,13,97,54,19";
+    char a[100] = "10,40,60,130,90,50,190";
+    int sum = 0;
+    sum = get_sum(a);
+    printf("sum=%d\n", sum);
+    return 0;
+}
+结果：sum=570
 
 # c语言实现将用户输出的字符串保存到一个文本文件中，输入exit显示good bye，如何按回车退出
 
