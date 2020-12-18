@@ -1,0 +1,8 @@
+vscode多文件编译的简单配置方法：
+新建一个文件夹例如multifile
+创建一个main.c文件用于运行
+创建一个mymath.c文件用于自定义函数，在里面实现想要的功能例如计算任意多个数的和
+创建一个mymath.h文件用于声明mymath.c里面的函数，函数名称和参数必须一样；
+在main.c 文件中添加“include mymath.h ” 
+点击运行和调试，生成launch.json和task.json ,修改task.json,将${file}修改为"${fileDirname}/*.c",保存，ok
+
