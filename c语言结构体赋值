@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+typedef struct student //z
+{
+    char name[20];
+    char gender[6];
+    int age;
+    char addr[100];
+    void (*introduce)(char *name); //这里不能放函数，只能放函数指针
+    void (*show)(struct student *s);
+} Student;
+void introduce(char *name)
+{
+    printf("Hello My Name is %s\n", name);
+}
+
+void info(Student *s)
+{
+    printf("My Name is %s\n", s->name);
+    printf("I am a %s\n", s->gender);
+    printf("I am %d years old\n", s->age);
+}
+
+int main(int argc, char const *argv[])
+{
+    Student s1 = {"Andrew", "Male", 20, "68 greenwich estate"};
+    Student s2 = s1; //结构体的赋值就跟普通变量的赋值一样
+    s2.show = info;
+    s2.show(&s2);
+    return 0;
+}
+
+结果：
+My Name is Andrew
+I am a Male
+I am 20 years old
