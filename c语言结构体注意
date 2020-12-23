@@ -16,5 +16,6 @@ pSt=&s1; //将pSt指向s1.此时就没有问题
 修改2：使用malloc函数：
 struct Student *pSt;
 pSt=(struct Student *)malloc(sizeof(struct Student));
+7.假如需要利用一个函数来输出结构体的成员，那么最好使用结构体的指针来传递，因为这样子的效率更高。
 
 
