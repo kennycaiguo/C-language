@@ -1,0 +1,38 @@
+#include <stdio.h>
+struct info
+{
+    int age;
+    char name[20];
+} Info;
+
+struct student
+{
+    struct info info;
+    int score;
+    void (*display)(struct student *s);
+};
+
+void introduce(struct student *s)
+{
+    printf("Hello,I am %s.\n", s->info.name);
+    printf("I am %d years old.\n", s->info.age);
+    printf("My score is %d.\n", s->score);
+}
+
+int main(int argc, char const *argv[])
+{
+    struct student s =
+        {
+            18, "Mary", 89};
+
+    struct student *pStu = &s;
+    pStu->display = introduce;
+    pStu->display(pStu);
+
+    return 0;
+}
+
+结果：
+Hello,I am Mary.
+I am 18 years old.
+My score is 89.
