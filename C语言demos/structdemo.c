@@ -30,5 +30,11 @@ int main(int argc, char const *argv[])
     //s.introduce(s.name);     //调用函数
     s.show = info;
     s.show(s.name, s.gender, s.age);
+     printf("++++++++++++++++++++++++\n");
+    Student *pstu = &s;
+    strcpy(pstu[0].name, "Mary");
+    pstu[0].age = 30;
+    strcpy(pstu[0].gender, "Felmale");
+    pstu->show(pstu->name, pstu->gender, pstu->age);
     return 0;
 }
