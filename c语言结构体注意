@@ -5,3 +5,16 @@
 4.假如有两结构体struct Student变量s1和s2，可以互相赋值，如s2=s1，但是他们是两个不同的变量，相互之间没有任何关系，修改一个不会
 影响另一个。
 5.和普通变量类似，如果想利用一个函数来改变一个结构体的值，必须吧这个结构体的地址传递给函数而不是结构体变量，因为如果传递变量，修改的只是它的拷贝而不是它本身
+6.如果声明了一个结构体变量的指针，一定要给这个指针变量指向合法的内存，否则对它进行的任何操作都会出现段错误（野指针）如下面的代码是错误的：
+struct Student *pSt;
+pSt->age=18;//错误，pSt没有指向合法内存。
+修改1：
+Struct Student s1={"jack","Male",18,"3 pawsey road"}; //先创建一个结构体变量
+struct Student *pSt;
+pSt=&s1; //将pSt指向s1.此时就没有问题
+
+修改2：使用malloc函数：
+struct Student *pSt;
+pSt=(struct Student *)malloc(sizeof(struct Student));
+
+
