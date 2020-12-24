@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+typedef struct student //z
+{
+    char name[20];
+    char gender[6];
+    int age;
+    int score;
+    void (*print)(struct Student *s);
+} Student;
+
+void print_stu(Student *s)
+{
+    printf("name:%s\tgender:%s\tage:%d\tscore:%d\n", s->name, s->gender, s->age, s->score);
+}
+
+void print_stus(Student *s, int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        s[i].print = print_stu;
+        s[i].print(&s[i]);
+    }
+}
+void sort_stus(Student *s, int n)
+{
+    int i;
+    int j;
+    Student tmp;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - 1 - i; j++)
+        {
+            if (s[j].age > s[j + 1].age)
+            {
+                tmp = s[j];
+                s[j] = s[j + 1];
+                s[j + 1] = tmp;
+            }
+            else if (s[j].age == s[j + 1].age)
+            {
+                if (s[j].score > s[j + 1].score)
+                {
+                    tmp = s[j];
+                    s[j] = s[j + 1];
+                    s[j + 1] = tmp;
+                }
+            }
+        }
+    }
+}
+int main(int argc, char const *argv[])
+{
+    Student stus[5] = {
+        {"Jack", "Male", 18, 80},
+        {"Mary", "Female", 18, 70},
+        {"Paul", "Male", 17, 77},
+        {"Norton", "Male", 19, 89},
+        {"Lili", "Female", 18, 88},
+    };
+    int count = sizeof(stus) / sizeof(stus[0]);
+    printf("before sort the array:\n");
+    print_stus(stus, count);
+    sort_stus(stus, count);
+    printf("after sort the array:\n");
+    print_stus(stus, count);
+    return 0;
+}
+结果：
+before sort the array:
+name:Jack       gender:Male     age:18  score:80
+name:Mary       gender:Female   age:18  score:70
+name:Paul       gender:Male     age:17  score:77
+name:Norton     gender:Male     age:19  score:89
+name:Lili       gender:Female   age:18  score:88
+after sort the array:
+name:Paul       gender:Male     age:17  score:77
+name:Mary       gender:Female   age:18  score:70
+name:Jack       gender:Male     age:18  score:80
+name:Lili       gender:Female   age:18  score:88
+name:Norton     gender:Male     age:19  score:89
+
+
