@@ -1,0 +1,50 @@
+#include <stdio.h>
+typedef struct student //z
+{
+    char name[20];
+    char gender[6];
+    int age;
+    double score;
+
+} Student;
+
+void showStudents(char *file, Student *ps)
+{
+    printf("Students informations:\n");
+
+    FILE *p = fopen(file, "r");
+    //rewind(p);
+    while (!feof(p))
+    {
+        fscanf(p, "%s %s %d %lf", ps->name, ps->gender, &(ps->age), &(ps->score));
+        printf("%s %s %d %lf\n", ps->name, ps->gender, ps->age, ps->score);
+    }
+    fclose(p);
+}
+int main(int argc, char const *argv[])
+{
+    Student s;
+    printf("请输入学生信息,格式name gender age score:");
+    scanf("%s %s %d %lf", s.name, s.gender, &s.age, &s.score);
+    FILE *pf = fopen("students.txt", "a");
+    fprintf(pf, "\n%s %s %d %lf", s.name, s.gender, s.age, s.score);
+    //fprintf(pf, "\n");
+    // rewind(pf);
+    fclose(pf);
+    showStudents("students.txt", &s);
+
+    return 0;
+}
+
+students.txt的内容
+Mary female 18 78.500000
+Bob Male 20 81.300000
+Jesse Female 19 59.500000
+Betty Female 19 67.400000
+John Male 19 77.700000
+Stacy Female 18 88.300000
+Derick Male 22 65.500000
+Crook Female 18 77.700000
+Ford Male 18 60.100000
+Ken Male 19 63.300000
+Nancy Female 18 60.000000
