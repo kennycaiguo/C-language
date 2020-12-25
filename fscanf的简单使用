@@ -12,14 +12,13 @@ int main(int argc, char const *argv[])
     char name[20];
     char job[50];
     int age, salary;
-    /* fscanf(pf, "%s %d %s %d", name, &age, job, &salary); ////i 说明fscanf遇到空格就会停止
+ 
 
     printf("staff informations:\n");
-    printf("data: %s %d %s %d", name, age, job, salary); //data: "Benlee" 34 "engineer" 10000,如果benlee中间有空格，会得到错误的结果 */
+ 
     while (!feof(pf))
     {
         fscanf(pf, "%s %d %s %d", name, &age, job, &salary); ////i 说明fscanf遇到空格就会停止
-
         printf("data: %s %d %s %d\n", name, age, job, salary);
     }
     return 0;
