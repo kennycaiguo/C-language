@@ -3,6 +3,7 @@
 # <a href="https://github.com/kennycaiguo/glibc">Linux c 运行库源代码，非常有学习价值</a>
 # <a href="https://github.com/kennycaiguo/eglibc">linux 嵌入式系统c运行库源代码</a>
 # <a href="https://github.com/kennycaiguo/unix.v6.v7.src">Unix V6 V7源代码</a>
+# <a href="https://github.com/kennycaiguo/netbsd-src">NetBSD 免费的，具有高度移植性的 UNIX-like 操作系统</a>
 # <a href="https://zhuanlan.zhihu.com/p/84828775">c语言操作mysql数据库</a>
 # <a href="https://www.jianshu.com/p/5b80aa05199a">c语言操作mysql数据库</a>
 # <a href="https://www.w3cschool.cn/cadvance/izeb1j6f.html">C语言 函数指针</a>
