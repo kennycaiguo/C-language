@@ -1,0 +1,37 @@
+ #include <stdio.h>
+int main(int argc, char const *argv[])
+{
+    FILE *pf;
+    /* pf = fopen("girls.txt", "r");
+    char *content;
+    // fscanf(pf, "%s", content); ////i 说明fscanf遇到空格就会停止
+    fgets(content, 255, pf);//获取全部内容
+    printf("content is :%s", content);
+ */
+    pf = fopen("data.txt", "r");
+    char name[20];
+    char job[50];
+    int age, salary;
+    /* fscanf(pf, "%s %d %s %d", name, &age, job, &salary); ////i 说明fscanf遇到空格就会停止
+
+    printf("staff informations:\n");
+    printf("data: %s %d %s %d", name, age, job, salary); //data: "Benlee" 34 "engineer" 10000,如果benlee中间有空格，会得到错误的结果 */
+    while (!feof(pf))
+    {
+        fscanf(pf, "%s %d %s %d", name, &age, job, &salary); ////i 说明fscanf遇到空格就会停止
+
+        printf("data: %s %d %s %d\n", name, age, job, salary);
+    }
+    return 0;
+}
+
+data.txt的内容：
+"Benlee" 34 "engineer" 10000
+"Tracy" 30 "engineer" 20000
+"Mark" 34 "engineer" 9000
+
+运行结果：
+staff informations:
+data: "Benlee" 34 "engineer" 10000
+data: "Tracy" 30 "engineer" 20000
+data: "Mark" 34 "engineer" 9000
