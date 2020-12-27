@@ -1,0 +1,62 @@
+c语言fputs和fgets小作业：
+1.产生500个100以内的随机数，并且保存到一个文件中，格式：
+   10
+   20
+   3
+    ...
+   50 
+提示：fputs，sprintf函数
+2.读取文件中的内容，把文件的每一行数字副本放在一个数组int a[1024]中，然后打印数组中的内容
+提示：fgets，sscanf，feof
+
+答案：
+1.#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(int argc, char const *argv[])
+{
+    srand((unsigned int)time(NULL));
+    FILE *fp = fopen("randnums.txt", "w");
+    int num;
+    char strnum[80];
+    for (int i = 0; i < 500; i++)
+    {
+        num = rand() % 100;
+        sprintf(strnum, "%d\n", num);
+        fputs(strnum, fp);
+    }
+    fclose(fp);
+    return 0;
+}
+
+2.
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[])
+{
+
+    FILE *fp = fopen("randnums.txt", "r");
+    if (fp == NULL)
+    {
+        perror("Open file:");
+        return -1;
+    }
+    int a[1024];
+    char strnum[80];
+    int i = 0;
+    while (fgets(strnum, sizeof(strnum), fp) != NULL)
+    {
+        sscanf(strnum, "%d", &a[i]);
+        i++;
+    }
+    for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
+    {
+        printf("%d, ", a[i]);
+    }
+
+    fclose(fp);
+    return 0;
+}
+
