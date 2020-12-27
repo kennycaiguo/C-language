@@ -1,0 +1,63 @@
+版本1：
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[])
+{
+    FILE *f;
+
+    if (argv[1] == NULL)
+    {
+        printf("usage:catimpl.exe filename");
+    }
+    else
+    {
+        // printf("param=%s", argv[1]);
+        f = fopen(argv[1], "r");
+        char *buf;
+        int buflen = 4096;
+        int nread = 0;
+        buf = (char *)malloc(buflen * sizeof(char));
+        while ((fgets(buf, buflen, f)) != NULL)
+        {
+            printf("%s", buf);
+        }
+        free(buf);
+        buf = NULL;
+        fclose(f);
+    }
+    return 0;
+}
+
+版本2：
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[])
+{
+    FILE *f;
+
+    if (argv[1] == NULL)
+    {
+        printf("usage:kencat.exe filename");
+    }
+    else
+    {
+        // printf("param=%s", argv[1]);
+        f = fopen(argv[1], "r");
+        char ch;
+
+        while (1)
+        {
+            ch = fgetc(f);
+            if (feof(f))
+            {
+                break;
+            }
+            printf("%c", ch);
+        }
+
+        fclose(f);
+    }
+    return 0;
+}
