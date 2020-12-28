@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    FILE *fSrc = fopen("hwk.txt", "r");
+    FILE *fDst = fopen("answer.txt", "w");
+    char buf[1024];
+    char dst[1024];
+    int a, b, remain;
+    char sign;
+
+    while (fgets(buf, sizeof(buf), fSrc) != NULL)
+    {
+        sscanf(buf, "%d%c%d", &a, &sign, &b);
+        switch (sign)
+        {
+        case '+':
+            sprintf(dst, "%d+%d=%d\n", a, b, a + b);
+            break;
+        case '-':
+            sprintf(dst, "%d-%d=%d\n", a, b, a - b);
+            break;
+        case '*':
+            sprintf(dst, "%d*%d=%d\n", a, b, a * b);
+            break;
+        case '/':
+            if (b != 0)
+            {
+                remain = a % b;
+                sprintf(dst, "%d/%d=%d,余数=%d\n", a, b, a / b, remain);
+            }
+            else
+            {
+                sprintf(dst, "除数为零，算式无效\n");
+            }
+            break;
+        default:
+            break;
+        }
+        fputs(dst, fDst);
+    }
+    fclose(fSrc);
+    fclose(fDst);
+    printf("运算完成，请看answer.txt");
+    return 0;
+}
+
+hwk.txt的内容：
+1234+5678=
+1178-998=
+4567*334=
+6755/345=
+
+answer.txt的内容：
+1234+5678=6912
+1178-998=180
+4567*334=1525378
+6755/345=19,余数=200
+
