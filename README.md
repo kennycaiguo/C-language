@@ -108,7 +108,7 @@ char* toUpper(char* s){
 	char* res = (char*)malloc(sizeof(char)*len+1);//需要加1，存放0
 	int i = 0;
 	while (*s != '\0'){
-		if (*s >= 97 && *s <= 123){
+		if (*s >= 97 && *s <= 123){ //'a'-'z'
              tmp = *s;
 		     tmp = tmp - 32;
 		     res[i] = tmp;
@@ -408,6 +408,33 @@ int main() {
     }
     return 0;
 }
+# c语言中的冒泡排序法
+#include <stdio.h>
+int main(){
+    int nums[10] = {4, 5, 2, 10, 7, 1, 8, 3, 6, 9};
+    int i, j, temp;
+    //冒泡排序算法：进行 n-1 轮比较
+    for(i=0; i<10-1; i++){
+        //每一轮比较前 n-1-i 个，也就是说，已经排序好的最后 i 个不用比较
+        for(j=0; j<10-1-i; j++){
+            if(nums[j] > nums[j+1]){
+                temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+            }
+        }
+    }
+   
+    //输出排序后的数组
+    for(i=0; i<10; i++){
+        printf("%d ", nums[i]);
+    }
+    printf("\n");
+   
+    return 0;
+}
+运行结果：
+1 2 3 4 5 6 7 8 9 10
 
 # c语言中，两数相除得到小数的问题
 #include <stdio.h>
