@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+void copyfile(char *src, char *dst)
+{
+    if (strcmp(src, dst) == 0)
+    {
+        printf("Destination file name and source file name can't be the same!");
+        exit(1);
+    }
+    FILE *fsrc = fopen(src, "rb"); //一定要“rb”否则复制的文件有时会不能使用
+    FILE *fdst = fopen(dst, "wb"); //一定要“wb”否则复制的文件有时会不能使用
+    int buflen = 1024;
+    char buf[1024];
+    //buf = (char *)malloc(buflen * sizeof(char));
+    int nread = 0;
+
+    while ((nread = fread(buf, 1, buflen, fsrc)) > 0) //最好把读文件的代码放这里
+    {
+        fwrite(buf, 1, nread, fdst);
+    }
+
+    fclose(fsrc);
+    fsrc = NULL;
+    fclose(fdst);
+    fdst = NULL;
+    remove(src);
+}
+int main(int argc, char const *argv[])
+{
+    if (argv[1] == NULL || argv[2] == NULL)
+    {
+        printf("usage: mymv.exe fileSrc fileDst");
+    }
+    else
+    {
+        copyfile(argv[1], argv[2]);
+    }
+
+    return 0;
+}
