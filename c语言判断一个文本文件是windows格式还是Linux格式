@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    if (argc < 2)
+    {
+        printf("usage: linuxorwindows filename");
+        return -1;
+    }
+    FILE *fp = fopen(argv[1], "rb");
+    char a[1024] = {0};
+    fgets(a, sizeof(a), fp);
+    int len = 0;
+    while (a[len])
+    {
+        if (a[len] == '\n')
+        {
+            if (a[len - 1] == '\r')
+            {
+                printf("This is a windows file format.\n");
+            }
+            else
+            {
+                printf("This is a Linux file format.\n");
+            }
+        }
+        len++;
+    }
+    fclose(fp);
+    return 0;
+}
