@@ -26,7 +26,7 @@ void copyfile(char *src, char *dst)
     fsrc = NULL;
     fclose(fdst);
     fdst = NULL;
-    remove(src);
+    remove(src);//移动和复制的区别就是：移动的本质是复制，只不过它在复制完成后删除源文件，而复制不用删除源文件，这里的操作就是删除源文件
 }
 int main(int argc, char const *argv[])
 {
