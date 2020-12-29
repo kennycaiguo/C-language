@@ -11,6 +11,7 @@ typedef struct Student
 int main(int argc, char const *argv[])
 {
     FILE *fp = fopen("structStu.txt", "w");
+    
     Student stu[4] = {
         {"Jack", "male", 18, 77},
         {"Lucy", "Female", 18, 88},
@@ -38,6 +39,10 @@ typedef struct Student
 int main(int argc, char const *argv[])
 {
     FILE *fp = fopen("structStu.txt", "r");
+    if(NULL==fp){
+        perror("Open file:");
+        return -1;
+    }
     Student stu[4];
 
     for (int i = 0; i < 4; i++)
