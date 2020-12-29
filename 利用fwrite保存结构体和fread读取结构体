@@ -1,0 +1,57 @@
+1.利用fwrite函数保存结构体：
+#include <stdio.h>
+typedef struct Student
+{
+    char name[50];
+    char gender[6];
+    int age;
+    int score;
+} Student;
+
+int main(int argc, char const *argv[])
+{
+    FILE *fp = fopen("structStu.txt", "w");
+    Student stu[4] = {
+        {"Jack", "male", 18, 77},
+        {"Lucy", "Female", 18, 88},
+        {"Rosey", "Female", 19, 78},
+        {"Ray", "Male", 17, 66}};
+
+    for (int i = 0; i < 4; i++)
+    {
+        fwrite(&stu[i], sizeof(Student), 4, fp);
+    }
+    fclose(fp);
+    return 0;
+}
+
+2.利用fread函数读取结构体信息并且显示到屏幕
+#include <stdio.h>
+typedef struct Student
+{
+    char name[50];
+    char gender[6];
+    int age;
+    int score;
+} Student;
+
+int main(int argc, char const *argv[])
+{
+    FILE *fp = fopen("structStu.txt", "r");
+    Student stu[4];
+
+    for (int i = 0; i < 4; i++)
+    {
+        fread(&stu[i], sizeof(Student), 4, fp);
+        printf("%s,%s,%d,%d\n", stu[i].name, stu[i].gender, stu[i].age, stu[i].score);
+    }
+
+    fclose(fp);
+    return 0;
+}
+结果：
+Jack,male,18,77
+Lucy,Female,18,88
+Rosey,Female,19,78
+Ray,Male,17,66
+
