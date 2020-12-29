@@ -16,7 +16,7 @@ void MakeDirs(char *path)
             str[i] = '\0';
             if (access(str, 0) != 0)
             {
-                mkdir(str);
+                mkdir(str); //注意：这个函数在window中只有一个参数，但是在Linux中，它还有另外一个权限参数。
             }
             str[i] = '/';
         }
