@@ -1,0 +1,42 @@
+写法1：
+#include <stdio.h>
+#include <stdlib.h>
+void func(int **tmp)
+{
+
+    *tmp = (int *)malloc(sizeof(int));
+    **tmp = 100;
+}
+int main(int argc, char const *argv[])
+{
+    int *p = NULL;
+    func(&p);
+    printf("*p=%d\n", *p);
+    free(p);
+    p = NULL;
+    return 0;
+}
+运行结果：*p=100
+
+
+写法2：
+#include <stdio.h>
+#include <stdlib.h>
+void func(int **tmp)
+{
+
+    int *p = (int *)malloc(sizeof(int));
+    *p = 100;
+    *tmp = p;
+}
+int main(int argc, char const *argv[])
+{
+    int *p = NULL;
+    func(&p);
+    printf("*p=%d\n", *p);
+    free(p);
+    p = NULL;
+    return 0;
+}
+
+运行结果：*p=100
