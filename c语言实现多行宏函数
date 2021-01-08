@@ -1,0 +1,16 @@
+ #include <stdio.h>
+#define MAX(A, B) A > B ? A : B //这个就是一个宏函数
+//多行宏函数，每一行需要加\,不能有空格否则报错
+#define LOOP(FROM, TO, CMD)\
+    for (int i = FROM; i < TO; i++)\
+    {\
+        CMD\     
+    }\
+
+int main(int argc, char const *argv[])
+{
+    int max = MAX(10, 20);
+    printf("max=%d", max);
+    LOOP(0, 5, printf("hello loop!"));
+    return 0;
+}
