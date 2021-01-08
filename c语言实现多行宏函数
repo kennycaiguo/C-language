@@ -1,5 +1,5 @@
  #include <stdio.h>
-#define MAX(A, B) A > B ? A : B //这个就是一个宏函数
+#define MAX(A, B) A > B ? A : B //这个就是一个宏函数，宏函数的好处是不用为参数指定类型，有更好的通用性
 //多行宏函数，每一行需要加\,不能有空格否则报错
 #define LOOP(FROM, TO, CMD)\
     for (int i = FROM; i < TO; i++)\
