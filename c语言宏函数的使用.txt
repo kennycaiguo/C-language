@@ -1,0 +1,8 @@
+#include <stdio.h>
+#define MAX(A, B) A > B ? A : B //这个就是一个宏函数
+int main(int argc, char const *argv[])
+{
+    int max = MAX(10, 20);//调用宏函数
+    printf("max=%d", max);
+    return 0;
+}
