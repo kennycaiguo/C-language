@@ -14,3 +14,30 @@ int main(int argc, char const *argv[])
     LOOP(0, 5, printf("hello loop!"));
     return 0;
 }
+还可以利用宏给一个名字很长的函数起一个简短的别名
+如：
+#include <stdio.h>
+#define DO dosomething //利用宏给函数起一个简短名称
+#define MAX(A, B) A > B ? A : B //这个就是一个宏函数
+#define LOOP(FROM, TO, CMD)         \
+    for (int i = FROM; i < TO; i++) \
+    {                               \
+        CMD;                        \
+    }
+
+void dosomething()
+{
+    printf("get up\n");
+    printf("use bathroom\n");
+    printf("brush my teeth\n");
+    printf("wash my face\n");
+    printf("go to work!!!\n");
+}
+int main(int argc, char const *argv[])
+{
+    int max = MAX(10, 20);
+    printf("max=%d\n", max);
+    LOOP(0, 5, printf("hello wrold from LOOP marco!\n"));
+    DO();//调用短名函数
+    return 0;
+}
