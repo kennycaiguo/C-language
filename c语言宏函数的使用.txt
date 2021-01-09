@@ -90,3 +90,27 @@ int main(int argc, char const *argv[])
     LOG_I("hello %s,i am learnig you,i am %d percent love you", "C++", 100);
     return 0;
 }
+
+5.输出不同级别的日志信息
+#include <stdio.h>
+
+#define LOG(LEVEL, FORMAT, ...) \
+    printf(LEVEL);              \
+    printf(FORMAT, __VA_ARGS__);
+#define LOG_E(FORMAT, ...) LOG("ERROR:", FORMAT, __VA_ARGS__);
+#define LOG_W(FORMAT, ...) LOG("WARNING:", FORMAT, __VA_ARGS__);
+#define LOG_I(FORMAT, ...) LOG("INFO:", FORMAT, __VA_ARGS__);
+#define LOG_D(FORMAT, ...) LOG("DEBUG:", FORMAT, __VA_ARGS__);
+int main(int argc, char const *argv[])
+{
+    //LOG_I("hello %s,i am learnig you,i am %d percent love you", "C++", 100);
+    LOG_D("title=%s sum=%d\n", "Test", 1000);
+    LOG_E("%s Problem!!! Out of %s,you need to %s it\n", "Runtime", "Memory", "Fix");
+    LOG_I("Processor:%s,%d Git memory,%d Git handdrive,%f ghz fraquency\n", "Intel core i9", 8, 500, 3.3);
+    return 0;
+}
+
+结果：
+DEBUG:title=Test sum=1000
+ERROR:Runtime Problem!!! Out of Memory,you need to Fix it
+INFO:Processor:Intel core i9,8 Git memory,500 Git handdrive,3.300000 ghz fraquency
