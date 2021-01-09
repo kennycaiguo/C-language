@@ -80,3 +80,13 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
+4.宏函数可变参数
+#include <stdio.h>
+#define LOG_I(FORMAT, ...) \
+    printf("INFO:");       \
+    printf(FORMAT, __VA_ARGS__);
+int main(int argc, char const *argv[])
+{
+    LOG_I("hello %s,i am learnig you,i am %d percent love you", "C++", 100);
+    return 0;
+}
