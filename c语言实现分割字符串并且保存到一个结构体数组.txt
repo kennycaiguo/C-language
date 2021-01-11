@@ -1,0 +1,136 @@
+//这个是在vs2013编译通过
+#define  _CRT_SECURE_NO_WARNINGS
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct word
+{
+	char value[256];
+} Word;
+
+int countStr(const char *str, const char *lookStr)
+{
+	char *c1 = strstr(str, lookStr); //come:come to china,welcome to guandong,welcome to donggun,welcome to zmt
+	int i = 0;
+	while (c1 != NULL)
+	{
+		// printf("result:%s\n", c1);
+		c1++; //要移动指针位置，否则会变成死循环
+		i++;
+		c1 = strstr(c1, lookStr);
+	}
+	return i;
+}
+int mysearch(char *src, char *lookstr)
+{
+	int pos = 0;
+}
+void test(char *src, char *sep)
+{
+	char *org = src;
+	char *pos;
+	char *start;
+	char *lastPos; //保存最后一次的位置
+	int count;
+	int usedlen = 0;
+	char target[1024];
+	memset(target, 0, sizeof(target));
+	pos = strstr(src, sep);
+	start = src;
+	count = pos - start;
+	// usedlen = count; //保存查找长度
+	while (pos != NULL)
+	{
+		usedlen += (count + 1);
+		strncpy(target, src, count);
+		printf("%s \n", target);
+
+		start = pos + 1;
+		src = src + count + 1;
+		//printf("src=%s\n", src);
+		pos = strstr(src, sep);
+
+		count = pos - start;
+		// usedlen += count;
+
+		memset(target, 0, sizeof(target));
+	}
+	//处理剩余部分
+	// printf("usedlen=%d", usedlen);
+
+	strncpy(target, org + usedlen, strlen(org) - usedlen);
+	printf("%s \n", target);
+}
+
+void strToArr(char *src, char *sep, Word **ppw)
+{
+	// char **arr;
+
+	int found = countStr(src, sep); //统计sep出现的次数
+	*ppw = (Word *)malloc((found + 1) * sizeof(Word));
+	char *org = src;
+	char *pos;
+	char *start;
+	int count;
+	int usedlen = 0;
+	char target[1024];
+	memset(target, 0, sizeof(target));
+	pos = strstr(src, sep);
+	start = src;
+	count = pos - start;
+
+	int i = 0;
+	while (1)
+	{
+		if (pos != NULL){
+			usedlen += (count + 1);
+			strncpy(target, src, count);
+			target[count] = '\0';
+			strcpy((*ppw)[i].value, target);
+			(*ppw)[i].value[count] = '\0';
+			// printf("%s\n", (*res)[i]);
+			start = pos + 1;
+			src = src + count + 1;
+			//printf("src=%s\n", src);
+			pos = strstr(src, sep);
+			count = pos - start;
+			memset(target, 0, sizeof(target));
+			i++;
+		}
+		else{
+			break;
+		}
+		
+	}
+	//处理剩余部分,这里
+	// printf("usedlen=%d", usedlen);
+	memset(target, 0, sizeof(target));
+	count = strlen(org) - usedlen;
+	strncpy((*ppw)[found].value, org + usedlen, count);
+	(*ppw)[found].value[count] = '\0';
+}
+
+int main(int argc, char const *argv[])
+{
+	char *str = "welcome to china,welcome to guandong,welcome to donggun,welcome to zmt";
+	char *sep = ",";
+	// test(str, sep);
+	int count = countStr(str, sep) + 1;
+
+	Word *ws;
+	strToArr(str, sep, &ws);
+
+	for (int i = 0; i < count; i++)
+	{
+		printf("%s\n", ws[i].value);
+	}
+	getchar();
+	return 0;
+}
+结果：
+welcome to china
+welcome to guandong
+welcome to donggun
+welcome to zmt
