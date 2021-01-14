@@ -1,6 +1,7 @@
 # C-language
 # <a href="https://zhuanlan.zhihu.com/p/36654741">使用 Visual Studio Code 搭建 C/C++ 开发和调试环境</a>
 # <a href="http://www.okbase.net/file/item/18540">VC++写的C编译器源代码附设计文档</a>
+# <a href="http://www.okbase.net/file/item/27917">仿酷狗播放器VC++完整源代码</a>
 # <a href="https://github.com/kennycaiguo/glibc">Linux c 运行库glibc源代码，非常有学习价值</a>
 # <a href="https://github.com/kennycaiguo/eglibc">linux 嵌入式系统c运行库源代码</a>
 # <a href="https://github.com/kennycaiguo/unix.v6.v7.src">Unix V6 V7源代码</a>
