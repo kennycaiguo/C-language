@@ -4,6 +4,7 @@
 # <a href="http://www.okbase.net/file/item/27917">仿酷狗播放器VC++完整源代码</a>
 # <a href="https://github.com/kennycaiguo/avplayer">P2P播放器AVPlayer</a>
 # <a href="http://www.okbase.net/file/item/27046">VC++实现收发电子邮件</a>
+# <a href="http://www.okbase.net/file/item/27037">VC++ 代码控制链接ODBC</a>
 # <a href="https://github.com/kennycaiguo/glibc">Linux c 运行库glibc源代码，非常有学习价值</a>
 # <a href="https://github.com/kennycaiguo/eglibc">linux 嵌入式系统c运行库源代码</a>
 # <a href="https://github.com/kennycaiguo/unix.v6.v7.src">Unix V6 V7源代码</a>
