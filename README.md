@@ -1,5 +1,6 @@
 # C-language
 # <a href="https://zhuanlan.zhihu.com/p/36654741">使用 Visual Studio Code 搭建 C/C++ 开发和调试环境</a>
+# <a href="https://www.msys2.org/">构建工具MSYS2</a>
 # <a href="https://blog.csdn.net/sxhelijian/article/details/26163791">wxWidgets初学者导引（2）——下载、安装wxWidgets</a>
 # <a href="http://www.okbase.net/file/item/18540">VC++写的C编译器源代码附设计文档</a>
 # <a href="http://www.okbase.net/file/item/27917">仿酷狗播放器VC++完整源代码</a>
