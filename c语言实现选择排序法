@@ -1,0 +1,46 @@
+#include<stdio.h>
+void printArr(int* Arr,int n)
+{
+    for(int i=0; i<n; ++i) 
+    {
+      printf("%d, ",*(Arr+i));  
+    }
+
+}
+//选择法排序
+/**
+ * @brief 原理：第一轮都是第一个和后的比，大了就交换，小于就不换，第一轮后选出最小的，第二轮时第一个元素就不参加比较，过程类似...直到最大值在最右边
+ * @param Arr
+ * @param n
+ */
+void sortArr(int* Arr,int n)
+{
+    
+    int tmp=0;
+    for(int i=0; i<n-1; ++i) {
+         
+        for(int j=i+1; j<n; ++j) {
+            if(Arr[i]>Arr[j]){
+                tmp=Arr[i];
+                Arr[i]=Arr[j];
+                Arr[j]=tmp;
+            }
+        }
+
+    }
+  // printArr(Arr,n);
+}
+
+int main(int argc, char **argv) 
+{
+    int a[]={10,7,1,9,4,6,7,3,2,0};
+    int count=sizeof(a)/sizeof(a[0]);
+    //int i=0;
+    printf("before sort\n=======================\n");
+    printArr(a,count);
+    printf("\n");
+    sortArr(a,count);
+    printf("after sort \n=======================\n");
+    printArr(a,count);
+    return 0;
+}
