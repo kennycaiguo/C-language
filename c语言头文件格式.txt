@@ -1,0 +1,15 @@
+//防止头文件重复包含
+#ifndef _XXXXX_H
+#define _XXXXX_H
+//如果是c++编译器，设置其安c语言标准编译
+#ifdef __cplusplus
+extern "C"
+{
+#endif //左花括号
+
+ 在这里写变量以及函数声明
+
+#ifdef __cplusplus
+}        //右花括号
+#endif
+#endif
