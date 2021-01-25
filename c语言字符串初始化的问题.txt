@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+//注意，c语言中是没有真正的字符串的，一般用字符数组模拟，但是只有包含数字0或者'\0'的字符数组才算是字符串
+int main(int argc, char const *argv[])
+{
+	//不指定长度，会出现乱码
+	char buf1[] = { 'a', 'b', 'c' };
+	printf("buf1 = %s \n", buf1); //buf1 = abc烫烫?沅黲
+
+	//指定了长度，后面没有赋值的元素会自动补0，没有乱码
+	char buf2[50] = { 'a', 'b', 'c' };
+	printf("buf2 = %s \n", buf2);//buf2 = abc
+
+	//注意'0'不是结束符
+	char buf3[50] = { '1','a', 'b', '0','7' };
+	printf("buf3 = %s \n", buf3);//buf3 = 1ab07
+
+	//数字0是结束符
+	char buf4[50] = { '1', 'a', 'b', 0, '7' };
+	printf("buf4 = %s \n", buf4); //buf4 = 1ab
+
+	//'\0'是结束符
+	char buf5[50] = { '1', 'a', 'b', '\0', '7' };
+	printf("buf5 = %s \n", buf5); //buf4 = 1ab
+	//结论：'0'!='\0',但是0=='\0'
+	system("pause");
+	return 0;
+}
