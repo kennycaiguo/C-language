@@ -25,6 +25,13 @@ int main(int argc, char const *argv[])
 	char buf5[50] = { '1', 'a', 'b', '\0', '7' };
 	printf("buf5 = %s \n", buf5); //buf4 = 1ab
 	//结论：'0'!='\0',但是0=='\0'
+		
+	char buf6[] = "hello, ladies";
+	printf("strlen(buf6)=%d,sizeof(buf6)=%d\n", strlen(buf6), sizeof(buf6));//strlen(buf6)=13,sizeof(buf6)=14
+
+	char buf7[100] = "hello, ladies";
+	printf("strlen(buf7)=%d,sizeof(buf7)=%d\n", strlen(buf7), sizeof(buf7));//strlen(buf7)=13,sizeof(buf7)=100
+	//结论：strlen把buf当作字符串处理，遇到数字0或者字符'\0'就结束，二操作符sizeof把buf当作数字，它返回的是数组元素的个数
 	system("pause");
 	return 0;
 }
