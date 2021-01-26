@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int getnonspacelettercount(char* src,int *count)//利用两头堵模型实现去除字符串两边的空格
+{
+	char *str = src;
+	int n = 0;
+	if (str == NULL){
+		return -1;
+	}
+	int begin = 0;
+	int end = strlen(str) - 1;
+	while (isspace(str[begin]) && str[begin]!=0)
+	{
+		begin++;
+     }
+	while (isspace(str[end]) && str[end] != 0)
+	{
+		end--;
+	}
+	n = end - begin + 1;
+	*count = n;
+	return 0;
+}
+int main(int argc, char const *argv[])
+{
+	char *p = "     bigbigpussy    ";
+	int count;
+	getnonspacelettercount(p, &count);
+	printf("count=%d", count);
+	system("pause");
+	return 0;
+}
