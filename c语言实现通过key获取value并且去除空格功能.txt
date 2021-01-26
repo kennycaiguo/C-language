@@ -1,0 +1,75 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int trimSpace(char* dst, char *src)//利用两头堵模型实现去除字符串两边的空格
+{
+	char* from = src;
+	char* to = dst;
+
+	if (dst == NULL || src == NULL)
+	{
+		return -1;
+	}
+	int begin = 0;
+	int end = strlen(from) - 1;
+	while (from[begin] == ' '&& from[begin] != 0)
+	{
+		begin++;
+	}
+	while (from[end] == ' '&& from[end] != 0)
+	{
+		end--;
+	}
+	int count = end - begin + 1;
+	src = src + begin;
+	strncpy(dst, src, count);
+	dst[count] = '\0';
+	return 0;
+	 
+	return 0;
+}
+int getValueForkey(char* src, char *key, char *value, int* len)
+{
+	if (src == NULL || key == NULL || value == NULL || len == NULL)
+	{
+		return -1;
+	}
+	char *pos;
+	int ret;
+	//查找key
+	pos = strstr(src, key);
+	if (pos == NULL)
+	{
+		return -2;
+	}
+	//找到了就跳过
+	pos = pos + strlen(key);
+	//查找"="
+	pos = strstr(pos, "=");
+	if (pos == NULL){
+		return -3;
+	}
+	ret = trimSpace(value, pos+1);
+	if (ret != 0){
+		printf("trimSpace error:%d", ret);
+		return ret;
+	}
+	//获取字符串长度
+	*len = strlen(value);
+	return 0;
+}
+int main(int argc, char const *argv[])
+{
+	char* keyval= "key        =     value2         ";
+	char* key = "key";
+	char value[50];
+	int len;
+	getValueForkey(keyval, key, value, &len);
+	printf("value=%s\n", value);
+	printf("len=%d\n", len);
+	system("pause");
+	return 0;
+}
