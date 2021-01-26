@@ -1,0 +1,92 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void strcpyimpl(char* dst, char* src)//方法一
+{
+	while (*src!=0)
+	{
+		*dst = *src;
+		src++;
+		dst++;
+	}
+	//补结束符，因为strlen获取的数据不包含结束符
+	*dst = 0;
+	//dst[strlen(src)] = 0;
+}
+void strcpyimpl2(char* dst, char* src)//方法二
+{
+	while (*src != 0)
+	{
+		*dst++ = *src++;//这里先执行赋值，再执行加1操作，这个写法不太好
+		 
+	}
+	//补结束符，因为strlen获取的数据不包含结束符
+	*dst = 0;
+	//dst[strlen(src)] = 0;
+}
+void strcpyimpl3(char* dst, char* src)//方法三
+{
+	while ((*dst++ = *src++) != 0)//这里先执行赋值，再执行加1操作，这个写法把赋值，自增，判断都写到一行，可读性差不太好
+	{
+		
+	}
+	//补结束符，因为strlen获取的数据不包含结束符
+	*dst = 0;
+	//dst[strlen(src)] = 0;
+}
+void strcpyimpl4(char* dst, char* src)//方法三
+{
+	//这种写法不需要添加结束符因为它是先拷贝，包括'\0'，然后再判断这*dst是否为0，为0则退出循环
+	while (*dst++ = *src++)//这里先执行赋值，再执行加1操作，这个写法把赋值，自增，判断都写到一行，可读性差不太好
+	{
+		NULL;
+	}
+	 
+}
+/*
+注意:1.最好为函数设定返回值，通过返回值判断函数调用是否成功，成功0，失败非0
+     2.需要判断形参是否为空
+	 3.最好不要直接使用形参
+*/
+      
+int strcpyimpl5(char* dst, char* src) //方法5
+{
+	if (dst == NULL || src == NULL)
+	{
+		return -1;
+	}
+	char *to = dst;
+	char *from = src;
+	while (*to++ = *from++)//这里先执行赋值，再执行加1操作，这个写法把赋值，自增，判断都写到一行，可读性差不太好
+	{
+		NULL;
+	}
+	return 0;
+}
+void strcpyimpl6(char* dst, char* src) //方法六
+{
+	int i;
+	for (i = 0; src[i]!=0; i++)
+	{
+		dst[i] = src[i];
+	}
+	//补结束符，因为strlen获取的数据不包含结束符
+	dst[i] = 0;
+}
+int main(int argc, char const *argv[])
+{
+	char src[] = "i love have sex with girls";
+	char dst[100];
+	//strcpyimpl(dst, src);
+	//strcpyimpl2(dst, src);
+	//strcpyimpl3(dst, src);
+	strcpyimpl5(dst, src);
+	 
+	////补结束符，因为strlen获取的数据不包含结束符
+	
+	printf("dst = %s \n", dst);
+	system("pause");
+	return 0;
+}
