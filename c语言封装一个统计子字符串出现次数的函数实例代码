@@ -1,0 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int countsubstr(char *str, char* substr,int *count)
+{
+	int tmp = 0;
+	char *src = str; //最好不要直接使用形参，所以用一个临时变量接收str
+	char *sub = substr;
+	while ((src=strstr(src,sub))!=NULL)
+	{
+		src = src + strlen(sub);
+		tmp++;
+		if (*src == 0)
+		{
+			break;
+		}
+	}
+	*count = tmp;
+	return 0;
+}
+int main(int argc, char const *argv[])
+{
+	char *p = "abcd111abcd222333abcd567pussy12abcd9999abcdqqabcd";
+	char *sub = "abcd";
+	int len;
+	int ret = countsubstr(p, sub, &len);
+	if (ret == 0){
+		printf("len=%d", len);
+	}
+	system("pause");
+	return 0;
+}
