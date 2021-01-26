@@ -5,6 +5,10 @@
 
 int countsubstr(char *str, char* substr,int *count)
 {
+         if(str==NULL||substr==NULL)
+	{
+		return -1;
+	}
 	int tmp = 0;
 	char *src = str; //最好不要直接使用形参，所以用一个临时变量接收str
 	char *sub = substr;
