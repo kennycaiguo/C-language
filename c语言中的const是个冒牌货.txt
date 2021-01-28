@@ -1,0 +1,14 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char const *argv[])
+{
+	const c = 100;//虽然将c定义位一个常量，不可以直接修改c的值
+	int *p = &c; //但是可以通过指针间接修改
+	*p = 200; 
+	printf("c=%d,*p=%d\n", c, *p);
+	system("pause");
+	return 0;
+}
