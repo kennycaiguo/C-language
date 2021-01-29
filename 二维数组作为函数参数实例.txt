@@ -1,0 +1,47 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void printArr(char str[][6], int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%s，", str[i]);
+
+	}
+	printf("\n");
+
+}
+void sortArr(char str[][6], int n){
+	int i = 0;
+	int j = 0;
+	char tmp[20] = { 0 };
+	for ( i = 0; i < n-1; i++)
+	{
+		for (j = i+1; j < n; j++)
+		{
+			if (strcmp(str[i], str[j]) > 0)
+			{
+				strcpy(tmp, str[i]);
+				strcpy(str[i],str[j]);
+				strcpy(str[j], tmp);
+			}
+		}
+
+	}
+}
+int main(int argc, char const *argv[])
+{
+	//注意每一个字符串都有一个隐含的'\0'结束符，所以只能放n-1个字符，如果越界了会出现很奇怪的错误
+	char str[][6] = {"ccccc","aaaaa","11111","22222","ddddd","bbbbb"};//
+	printf("before sort\n");
+	int n = sizeof(str) / sizeof(str[0]);
+	printArr(str, n);
+	sortArr(str, n);
+	printf("after sort\n");
+	printArr(str, n);
+	system("pause");
+	return 0;
+}
