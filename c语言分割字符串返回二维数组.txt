@@ -1,0 +1,302 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*
+   c语言分割字符串返回数组
+*/
+
+//方法一：二维数组
+int splitString(const char *src, char c, char buf[10][30], int *count)
+{
+	if (src==NULL||c==NULL||buf==NULL||count==NULL)
+	{
+		return -1;
+	}
+	char *pos=NULL;
+	pos = strchr(src, c);
+	 
+	int len = 0;
+	int i = 0;
+	len = pos - src;
+	//printf("%d\n", len);
+	while (pos!=NULL)
+	{
+		if (len > 0)
+		{
+          strncpy(buf[i], src, len);
+		  src = src + len + 1;
+		  //printf("%s\n", src);
+		  pos = pos + 1;
+		  pos = strchr(src, c);
+		  len = pos - src;
+		  i++;
+		}
+		
+		//printf("%s\n", buf[i]);
+		
+	}
+	if (*src != '\0')
+	{
+		strcpy(buf[i], src);
+		i++;
+	}
+	*count = i ;
+	return 0;
+}
+//方法二：二级指针
+int splitString2(const char *src, char c, char **res, int *count)
+{
+	if (src==NULL||c==NULL||res==NULL||count==NULL)
+	{
+		return -1;
+	}
+	/*int n =6; //已经定义了一个函数getMen来分配堆内存，所以这些代码不需要了
+	for (int i = 0; i < n; i++)
+	{
+		res[i] = (char*)malloc(sizeof(char) * 30);
+
+	}*/
+	char *pos = NULL;
+	pos = strchr(src, c);
+
+	int len = 0;
+	int i = 0;
+	len = pos - src;
+	//printf("%d\n", len);
+	while (pos != NULL)
+	{
+		if (len > 0)
+		{
+			strncpy(res[i], src, len);
+			res[i][len] = '\0';
+			src = src + len + 1;
+			//printf("%s\n", src);
+			pos = pos + 1;
+			pos = strchr(src, c);
+			len = pos - src;
+			i++;
+		}
+
+		//printf("%s\n", buf[i]);
+
+	}
+	//这个表示如果查询完了，还没有到结束，就必须把所有剩余的字符统统拷贝
+	if (*src != '\0')//注意如果字符串的最后没有‘，’，必须作如下处理
+	{
+		strcpy(res[i], src);
+		i++;
+	}
+	*count = i;
+	return 0;
+}
+//方法三，老师的方法do-while循环
+int splitString3(const char *src, char c, char buf[10][30], int *count)
+{
+	if (src == NULL || c == NULL || buf == NULL || count == NULL)
+	{
+		return -1;
+	}
+	char *start = src;
+	char *p = NULL;
+	int len = 0;
+	int i = 0;
+	do
+	{
+		p = strchr(start, c);
+		len = p - start;
+		if (p != NULL)
+		{
+			strcpy(buf[i], start, len);
+			start = p + 1;
+			buf[i][len] = 0;
+			i++;
+		}
+		else
+		{
+			strcpy(buf[i], start);
+			i++;
+			break;
+		}
+
+	} while (*src!=NULL);
+	*count = i;
+	return 0;
+}
+//方法四，老师的方法do-while循环
+int splitString4(const char *src, char c, char **res, int *count)
+{
+	if (src == NULL || c == NULL || res == NULL || count == NULL)
+	{
+		return -1;
+	}
+	/*int n = 6;  //已经定义了一个函数getMen来分配堆内存，所以这些代码不需要了
+	for (int i = 0; i < n; i++)
+	{
+		res[i] = (char*)malloc(sizeof(char) * 30);
+
+	}*/
+	char *pos = NULL;
+	pos = strchr(src, c);
+
+	int len = 0;
+	int i = 0;
+	len = pos - src;
+	//printf("%d\n", len);
+	while (pos != NULL)
+	{
+		if (len > 0)
+		{
+			strncpy(res[i], src, len);
+			res[i][len] = '\0';
+			src = src + len + 1;
+			//printf("%s\n", src);
+			pos = pos + 1;
+			pos = strchr(src, c);
+			len = pos - src;
+			i++;
+		}
+
+		//printf("%s\n", buf[i]);
+
+	}
+	//这个表示如果查询完了，还没有到结束，就必须把所有剩余的字符统统拷贝
+	if (*src != '\0')//注意如果字符串的最后没有‘，’，必须作如下处理
+	{
+		strcpy(res[i], src);
+		i++;
+	}
+	*count = i;
+	return 0;
+}
+//二级指针的释放函数
+void freeBuf(char **buf, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (buf[i] != NULL)
+		{
+			free(buf[i]);
+			buf[i] = NULL;
+		}
+	}
+}
+//三级指针的释放函数
+void freebufs(char ***buf, int n)
+{
+	freeBuf(*buf, n);
+	if (*buf != NULL)
+	{
+		free(*buf);
+		*buf = NULL;
+	}
+}
+void freebufs2(char ***buf, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (buf[0][i] = NULL){
+			free(buf[0][i]);
+			buf[0][i] = NULL;
+		}
+	}
+	if (*buf != NULL)
+	{
+		free(*buf);
+		*buf = NULL;
+	}
+}
+//利用三级指针创建堆内存
+int getMen(char ***tmp,int n)
+{
+	 
+	char **buf = NULL;
+	buf = (char **)malloc(n*sizeof(char *));
+	if (buf == NULL)
+	{
+		return -1;
+	}
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		buf[i] = (char *)malloc(sizeof(char) * 30);
+		memset(buf[i], 0, 30);
+	}
+	*tmp = buf;
+	return 0;
+}
+void freebufs3(char ***tmp, int n)
+{
+	char **buf = *tmp;//如果没有这句话会出错
+	for (int i = 0; i < n; i++)
+	{
+		if (buf[i] = NULL){
+			free(buf[i]);
+			buf[i] = NULL;
+		}
+	}
+	if (buf != NULL)
+	{
+		free(buf);
+		buf = NULL;
+	}
+	*tmp = NULL;
+}
+int main01(int argc, char const *argv[])
+{
+	char *str = "abcdef,acccd,eeee,aaaa,e3eeee,ssss";//abcdef,acccd,eeee,aaaa,e3eeee,ssss,
+	char buf[6][30] = { 0 };
+	char c = ',';
+	int count = 0;
+	splitString3(str, c, buf, &count);
+	printf("count=%d\n", count);
+	 
+	for (int i = 0; i < count; i++)
+	{
+		printf("%s\n", buf[i]);
+
+	}
+	
+	system("pause");
+	return 0;
+}
+
+int main(int argc, char const *argv[])
+{
+	char *str = "abcdef,acccd,eeee,aaaa,e3eeee,ssss,";//abcdef,acccd,eeee,aaaa,e3eeee,ssss,
+	//char **res=(char**)malloc(sizeof(char*)*10);
+	char **res = NULL;
+	getMen(&res, 6);
+	char c = ',';
+	int count = 0;
+	int ret=splitString2(str, c, res, &count);
+	if (ret != 0)
+	{
+		printf("split string failed error code:%d", ret);
+	}
+	
+	printf("count=%d\n", count);
+	for (int i = 0; i < count; i++)
+	{
+		printf("%s\n", res[i]);
+
+	}
+	/*freeBuf(res, count);
+	if (res != NULL)
+	{
+		free(res);
+		res = NULL;
+	}*/
+	freebufs3(&res, count);
+	//以下字段代码是用来预防res没有释放的
+	if (res != NULL)
+	{
+		printf("res 不为空，现在释放...");
+		free(res);
+		res = NULL;
+
+	}
+	system("pause");
+	return 0;
+}
