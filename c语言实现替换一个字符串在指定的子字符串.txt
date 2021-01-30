@@ -1,0 +1,122 @@
+//三种方法
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/**
+  作业：有一个字符串 "abcd1111abcd2222abcdqqqq";
+  要求：将字符串变为"dcba1111dcba2222dcbaqqqq"输出
+*/
+
+//我的方法一，只有当新子串的长度和原子串的长度相等时才ok
+int changeStr(const char *src,char **dst,char *sub,char *new_sub)
+{ 
+	int n = 0;
+	if (src==NULL||dst==NULL||sub==NULL||new_sub==NULL)
+	{
+		return -1;
+	}
+	char tmp[100] = { 0 };
+	strcpy(tmp, src);
+	char *pos = NULL;
+	pos = strstr(src, sub);
+	 
+	while (pos!= NULL)
+	{
+		n = pos - src;
+		printf("n=%d\n", n);
+		for (int i = 0; i < strlen(new_sub); i++){
+			tmp[n + i] = new_sub[i];
+		}
+		pos = pos + strlen(sub);
+		pos = strstr(pos, sub);
+	}
+	//printf("tmp=%s\n", tmp);
+	strcpy(*dst, tmp);
+	return 0;
+}
+//我的方法2，通用的
+int changeStr2(const char *src, char **dst, char *sub, char *new_sub)
+{
+	int n = 0;
+	if (src == NULL || dst == NULL || sub == NULL || new_sub == NULL)
+	{
+		return -1;
+	}
+	char *start = src;
+	char *p = NULL;
+	char tmp[512] = { 0 };
+	p = strstr(src, sub);
+	n = p - start;
+	printf("%d\n", n);
+	while (p!=NULL)
+	{
+		strncat(tmp, start,n);
+		strcat(tmp, new_sub);
+		 
+		start = p + strlen(sub);
+		p = strstr(start, sub);
+		n = p - start;
+		 
+	}
+	strcat(tmp, start);
+	strcpy(*dst, tmp);
+	return 0;
+}
+//老师的方法：通用
+int changeStr3(const char *src, char **dst, char *sub, char *new_sub)
+{
+	int n = 0;
+	if (src == NULL || dst == NULL || sub == NULL || new_sub == NULL)
+	{
+		return -1;
+	}
+	char *start = src;
+	char *p = NULL;
+	char tmp[512] = { 0 };
+	do
+	{
+		p = strstr(start, sub);
+		int len = 0;
+		len = p - start;
+		if (p!=NULL)
+		{
+			if (len > 0)
+			{
+				strncat(tmp, start, len);
+			}
+			strncat(tmp, new_sub, strlen(new_sub));
+			start = p + strlen(sub);
+		}
+		else
+		{
+			strcat(tmp, start);
+			break;
+		}
+
+	} while (*start!='\0');
+	char *buf = (char*)malloc(strlen(tmp) + 1);
+	strcpy(buf, tmp);
+	*dst = buf;
+	return 0;
+}
+int main(int argc, char const *argv[])
+{
+	char *src = "abcd1111abcd2222abcdqqqq";
+	char *sub = "abcd";
+	char *newsub = "sexy girl";
+	char *dst = (char*)malloc(sizeof(char) * 100);
+	int ret=changeStr3(src, &dst, sub, newsub);
+	if (ret != 0)
+	{
+		printf("字符串转换失败");
+	}
+	printf("dst=%s\n", dst);
+	if (dst != NULL)
+	{
+		free(dst);
+		dst = NULL;
+	}
+	system("pause");
+	return 0;
+}
