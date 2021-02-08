@@ -1,0 +1,35 @@
+// ArrPtrasParam.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+
+void Output2DArr(int arr[][4]){
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void Output2DArr2(int(*arr)[4]){ //这个方法跟上面的方法完全等价
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	int a[][4] = {1,2,3,4,5,6,7,8,9,10,11,12};
+	Output2DArr2(a);
+	getchar();
+	return 0;
+}
+
