@@ -1,0 +1,316 @@
+一、简述数组与指针的区别
+答：
+ 1.数组是一连续的记忆体区块，必须要先决定配置容量和存放的资料型态。
+
+ 当数组作为函数的参数进行传递时，数组就自动退化为通指针类型，数组名可作为指针常量。
+
+ 2.指针是指针变量的简称，这个变量存放的地址值，是可以改变的；
+
+ 3. int a[10]; //系统实实在在分配了10*4个字节的连续内存单元
+
+ int* p=a;//也可以写成 int* p = &a[0];p指向数组a[10]的首地址a[0];
+
+ //p只是一个变量，只占据4个内存单元，存储的是数组a的首地址
+
+ sizeof（p）的值为 4 个字节；
+
+ sizeof（a）的值为 40 个字节；//sizeof 操作符
+
+ 4. char a[3] = "abc";//定义一个数组，内存中只有数组，存放在堆栈中（注意，此时字符串不是常量字符串，不在静态区而是在数组所在的堆栈内存中）。
+
+ strcpy(a, "end");//没有错
+
+ char* a = "abc";定义一个指针变量，内存中具有一个指针变量和一个字符串常量，并且字符串常量存放在字符串常量区中，指针在栈中分配。
+
+ strcpy(a, "end");//出错
+
+ char* a = new char[4];
+
+ strcpy(a, "end");//对的
+
+ delete []a;//delete 释放new分配的单个对象指针指向的内存
+
+ //delete[] 释放new分配的对象数组指针指向的内存
+
+ 
+ 5.
+
+ int array[3] = {7,8,9};//全局变量
+
+ extern int array[3];//外部函数声明
+
+ extern int *array;//不可以这么声明
+
+二、如何定义一个指向int a[10]类型的指针变量（数组指针）（三种方法）
+答：
+     方法（1） ：
+
+            typedef  int A[10]; //先定义一个数组类型
+            int a[10]={1,2,3,4,5,6,7,8,9,10}; //定义一个数组
+            A *p=&a; //定义数组指针变量以及赋值
+    方法（2)
+          typedef int(*P)[10];
+         int a[10]={1,2,3,4,5,6,7,8,9,10}; //定义一个数组
+         P p=&a; //定义数组指针变量以及赋值
+
+     方法（3）
+       int (*p) [10]; //定义指针变量；
+       int a[10]={1,2,3,4,5,6,7,8,9,10}; //定义一个数组
+       p=&a; //定义数组指针变量以及赋值
+
+三、
+   int a[10];
+   int b[5][10];
+   int (*p)[10];
+  p=&a //为什么加&？
+  p是数组指针，它指向整个一维数组，所以需要区地址
+  p=b   //为什么不加&？   
+  p是数组指针，而b代表数组的首行首地址，所以不加&
+
+四、int a[3][5]={0};
+//a ->a+0
+//a+i
+//*(a+i) ->a[i]
+//*(a+i)+j -> &a[i][j]
+//*(*(a+1)+j) ->a[i][j]
+
+
+五、如何在栈上开辟一个二维数组，如何在堆上开辟一个二维数组？
+答：在栈上开辟一个二维数组 int a[3][4]={0};
+       在堆上开辟一个二维数组：
+        int **arr；
+         int i=0;
+        *arr=（int**）malloc(sizeof(int*)*3);
+          for(i=0;i<3;i++)
+         {
+              arr[i]=(int*)malloc(sizeof(int)*4);
+          }
+   
+六、int main(int argc,char *argv[]);
+argc,argv分别代表什么？
+答：argc表示传给main函数的参数个数，argv代表传给main函数的所有参数的数组
+
+七、找到数组中指定字符串的位置
+#define NUM(a) (sizeof(a)/sizeof(*a) )
+
+char *keywords[]={
+     "while",
+     "case",
+     "static",
+     "do"
+};
+ 
+/*
+  功能：找到数组指定字符串的位置
+  参数：
+          table: 字符串数组(指针数组）首地址
+          size：数组元素个数
+          key：匹配字符串，如："do"
+          pos:  匹配字符串在数组中的位置 
+       返回值：成功：0
+       失败：非零
+*/
+
+答：
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define NUM(a) (sizeof(a)/sizeof(*a) )
+/*
+功能：找到数组指定字符串的位置
+参数：
+table: 字符串数组(指针数组）首地址
+size：数组元素个数
+key：匹配字符串，如："do"
+pos:  匹配字符串在数组中的位置
+返回值：成功：0
+失败：非零
+*/
+int findStrInArr(char **table,int size,char *key,int *pos)
+{
+	if (table == NULL || size == NULL || key == NULL || pos == NULL)
+	{
+		return -1;
+	}
+	char **p = table;
+	for (int i = 0; i < size; i++)
+	{
+		if (strcmp(p[i], key) == 0)
+		{
+			*pos = i;
+		}
+	}
+	return 0;
+}
+
+int findStrInArr2(char *table[], int size, char *key, int *pos)
+{
+	if (table == NULL || size == NULL || key == NULL || pos == NULL)
+	{
+		return -1;
+	}
+	int n = -1;
+	for (int i = 0; i < size; i++)
+	{
+		if (strcmp(table[i], key) == 0)
+		{
+			n = i;
+			break;
+		}
+		 
+	}
+	if (n == -1)
+	{
+		return -2;
+	}
+	else
+	{
+		*pos = n;
+	}
+	return 0;
+}
+
+
+
+int main(int argc, char const *argv[])
+{
+	char *keywords[] = {
+		"while",
+		"case",
+		"static",
+		"do"
+	};
+	int pos = 0;
+	int res=findStrInArr(keywords, NUM(keywords), "while", &pos);
+	if (res)
+	{
+		printf("call findStrInArr() failed error:%d", res);
+	}
+	printf("pos = %d\n", pos);
+	system("pause");
+	return 0;
+}
+
+
+八、将字符串数组进行排序
+/*封装一个函数
+int sort(char **array1, int num1, char(*array2)[30], int num2,
+	char ***myp3/*out*/, int *num3)；
+
+             
+                 功能：1.把指针数组p1的字符串取出来，
+	2.把二维数组buf2的字符取出来，
+	3.上面的字符串放在p3，p3是在堆分配的二维内存
+	4.对p3中字符串进行排序，通过strcmp()进行排序
+
+	参数：p1: 指针数组的首地址，char *p1[]={"aa","ccccccc","bbbbbb};
+	len1: p1元素个数
+	buf2：二维数组首元素地址，char buf2[][30]={"111111","3333333","222222"};
+	len2：buf2字符串的行数
+	p3：二级指针的地址，需要在函数分配二维内存，保存p1和buf2的字符串，还需要排序
+	len3：保存p3中的字符串个数
+
+	返回值：成功0，失败非0
+      int main()
+{
+     int ret = 0;
+	char *p1[] = { "aa", "ccccccc", "bbbbbb"};
+	char buf2[][30] = { "111111", "3333333", "222222" };
+	char **p3 = NULL;
+	int len1, len2, len3, i = 0;
+	len1 = sizeof(p1) / sizeof(*p1);
+	len2 = sizeof(buf2) / sizeof(buf2[0]);
+           ...
+          //打印排序后的数组
+          return 0;
+}
+*/
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int sort(char **array1, int num1, char(*array2)[30], int num2,
+	char ***myp3/*out*/, int *num3)
+{
+	if (array1 == NULL || array2 == NULL || num1 == NULL || num2 == NULL || num3 == NULL)
+	{
+		return -1;
+	}
+	int i = 0;
+	int j = 0;
+	char **tmp = (char **)malloc(sizeof(char *)*(num1 + num2));
+	if (tmp==NULL)
+	{
+		return -2;
+	}
+	//先分配空间来接受array1中的数据
+	for (i = 0; i < num1; i++)
+	{
+		tmp[i] = (char *)malloc(sizeof(char) * strlen(array1[i])+1);
+		strcpy(tmp[i], array1[i]);
+	}
+	//然后分配空间来接受array2的数据，注意i不要从0开始，否则会把array1的数据覆盖
+	for ( i = num1,j=0; i < (num1+num2); i++,j++)
+	{
+		tmp[i] = (char *)malloc(sizeof(char) * strlen(array2[j]) + 1);
+		strcpy(tmp[i], array2[j]);
+	}
+	int count = num1 + num2;
+	
+	//对myp3进行排序
+	char *buf =NULL;
+	for ( i = 0; i < count-1; i++)
+	{
+		for (j = i + 1; j < count; j++)
+		{
+			if (strcmp(tmp[i], tmp[j]) > 0)
+			{
+				buf = tmp[i];
+				tmp[i]=tmp[j];
+				tmp[j]= buf;
+			}
+		}
+	}
+
+	//利用指针间接赋值，
+	*myp3 = tmp;
+	*num3 = count;
+	return 0;
+}
+
+void free_buf(char ***p)
+{
+
+}
+int main(int argc, char const *argv[])
+{
+	int ret = 0;
+	char *p1[] = { "aa", "ccccccc", "bbbbbb"};
+	char buf2[][30] = { "111111", "3333333", "222222" };
+	char **p3 = NULL;
+	int len1, len2, len3, i = 0;
+	len1 = sizeof(p1) / sizeof(*p1);
+	len2 = sizeof(buf2) / sizeof(buf2[0]);
+	/*
+	
+	*/
+
+	ret = sort(p1, len1, buf2, len2, &p3, &len3);
+	if (ret)
+	{
+		printf("调用sort出错，错误码：%d",ret);
+		system("pause");
+		return ret;
+	}
+	for (i = 0; i < len3; i++)
+	{
+		printf("%s ", p3[i]);
+	}
+	printf("\n");
+	//释放p3所指向的内存
+	//在函数内部把p3的值赋为NULL
+	free_buf(&p3);
+	system("pause");
+	return 0;
+}
