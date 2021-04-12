@@ -1,0 +1,443 @@
+实现了增删改查的功能。可以将一个结构体写到文件中，也可以把一个结构体的内容从文件中读取出来。
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 100 //定义最大联系人数量
+
+typedef struct Contact
+{
+    char name[50];
+    char phone[12];
+    char email[100];
+    char address[100];
+    char qq[12];
+} Contact;
+void showMenu();
+/* void saveContact(Contact *pct)
+{
+
+    if (pct == NULL)
+    {
+        return;
+    }
+    //  printf("%s\n", pct->name);
+    FILE *fp = fopen("contact.txt", "a");
+    char buf[1024] = {0};
+    sprintf(buf, "name:%s,phone:%s,email:%s,address:%s,qq:%s\n", pct->name, pct->phone, pct->email, pct->address, pct->qq);
+    // fwrite(buf, 1024, 1, fp);
+    fputs(buf, fp);
+    // fprintf(fp, "name:%s,phone:%s,email:%s,address:%s,qq:%s\n ", pct->name, pct->phone, pct->email, pct->address, pct->qq);
+    //  fflush(fp);
+    fclose(fp);
+    printf("data saved successfully!!!\n");
+} */
+void saveContactSerialize(Contact *pct)
+{
+
+    if (pct == NULL)
+    {
+        return;
+    }
+    //  printf("%s\n", pct->name);
+    FILE *fp = fopen("contact2.txt", "ab");
+    fwrite(pct, sizeof(Contact), 1, fp);
+    fclose(fp);
+    // printf("data saved successfully!!!\n");
+}
+void addContact()
+{
+    char op[3];
+    do
+    {
+        Contact c;
+        printf("请输入联系人的姓名，电话，Email，住址，qq，用空格隔开\n");
+        scanf("%s %s %s %s %s", c.name, c.phone, c.email, c.address, c.qq);
+        saveContactSerialize(&c);
+        printf("输入y继续添加联系人，n结束\n");
+        scanf("%s", &op);
+    } while (strcmp(op, "n") != 0);
+    showMenu(); //返回主菜单
+}
+void PrintContact(Contact *pc)
+{
+    if (pc == NULL)
+    {
+        return;
+    }
+    printf("Contact[name:%s,phone:%s,email:%s,address:%s,qq:%s]\n", pc->name, pc->phone, pc->email, pc->address, pc->qq);
+}
+/* int getContactCount()
+{
+    FILE *fp = fopen("contact.txt", "r");
+    int count = 0;
+    char buf[1024] = {0};
+    while (fgets(buf, sizeof(buf), fp) != NULL)
+    {
+        count++;
+    }
+    fclose(fp);
+    return count;
+} */
+int getContactcountSer()
+{
+    FILE *f = fopen("contact2.txt", "rb");
+    fseek(f, 0l, SEEK_END);
+    int len = ftell(f);
+    int count = len / sizeof(Contact);
+    printf("count=%d\n", count);
+    fclose(f);
+    return count;
+}
+void showAllContactsSer()
+{
+    Contact *pc;
+    FILE *f = fopen("contact2.txt", "rb");
+    int count = getContactcountSer();
+    char buf[sizeof(Contact)];
+    printf("========================所有联系人===================\n");
+    for (int i = 0; i < count; i++)
+    {
+        fread(buf, sizeof(Contact), 1, f);
+        pc = (Contact *)buf;
+        printf("name:%s,phone:%s,email:%s,address:%s,qq:%s\n", pc->name, pc->phone, pc->email, pc->address, pc->qq);
+    }
+
+    //PrintContact(&c);
+    fclose(f);
+    printf("========================显示完毕===================\n\n");
+
+    showMenu(); //返回主菜单
+}
+
+void testSaveSer()
+{
+    Contact c = {"Jackline", "13266677999", "Jaqualine123@gmail.com", "5 pawsey road,kgn5", "22233444"};
+    saveContactSerialize(&c);
+    Contact c1 = {"Miky", "13266677999", "Miky123@gmail.com", "7 orange street,st andrew", "22333444"};
+    saveContactSerialize(&c1);
+    Contact c2 = {"Marycake", "13266677889", "Mary123@gmail.com", "10 haglypark road,kgn5", "22233445"};
+    saveContactSerialize(&c2);
+    Contact c3 = {"Lucy", "13566678889", "Lucylove123@gmail.com", "6 warthempark road,kgn5", "22433446"};
+    saveContactSerialize(&c3);
+    printf("total record:%d\n", getContactcountSer());
+}
+void doEdit()
+{ //1.加载所有联系人到内存
+    FILE *fp = fopen("contact2.txt", "rb");
+    int len = getContactcountSer(); //获取联系人数量
+    rewind(fp);
+    Contact *pct = (Contact *)malloc(sizeof(Contact) * len); //根据数量分配空间
+    char buf[sizeof(Contact)] = {0};
+    for (int i = 0; i < len; i++)
+    {
+        fread(buf, sizeof(buf), 1, fp);
+        pct[i] = *((Contact *)buf);
+        memset(buf, 0, sizeof(buf));
+    }
+    fclose(fp);
+    //2.修改
+    char name[50] = {0};
+    //memset(buf, 0, sizeof(buf));
+    int indexWant = 0;
+    printf("请输入需要修改的联系人的姓名:");
+    scanf("%s", name);
+    for (int i = 0; i < len; i++)
+    {
+        if (strcmp(pct[i].name, name) == 0)
+        {
+            indexWant = i;
+            break;
+        }
+    }
+    printf("===============你需要查找的联系人信息===============\n");
+    printf("name:%s\nphone:%s\nemail:%s\naddress:%s\nqq:%s\n", pct[indexWant].name, pct[indexWant].phone, pct[indexWant].email, pct[indexWant].address, pct[indexWant].qq);
+    memset(name, 0, sizeof(name));
+    char phone[12] = {0};
+    char email[100] = {0};
+    char address[100] = {0};
+    char qq[12] = {0};
+    printf("请输入需要修改的联系人的姓名，电话，Email，住址，qq，用空格隔开,不需要修改的内容用-代替\n");
+    scanf("%s %s %s %s %s", name, phone, email, address, qq);
+    if (strcmp(name, "-") != 0)
+    {
+        memset(pct[indexWant].name, 0, sizeof(pct[indexWant].name));
+        strcpy(pct[indexWant].name, name);
+    }
+    if (strcmp(phone, "-") != 0)
+    {
+        memset(pct[indexWant].phone, 0, sizeof(pct[indexWant].phone));
+        strcpy(pct[indexWant].phone, phone);
+    }
+    if (strcmp(email, "-") != 0)
+    {
+        memset(pct[indexWant].email, 0, sizeof(pct[indexWant].email));
+        strcpy(pct[indexWant].email, email);
+    }
+    if (strcmp(address, "-") != 0)
+    {
+        memset(pct[indexWant].address, 0, sizeof(pct[indexWant].address));
+        strcpy(pct[indexWant].address, address);
+    }
+    if (strcmp(qq, "-") != 0)
+    {
+        memset(pct[indexWant].qq, 0, sizeof(pct[indexWant].qq));
+        strcpy(pct[indexWant].qq, qq);
+    }
+    printf("修改后的数据\nname:%s\nphone:%s\nemail:%s\naddress:%s\nqq:%s\n", pct[indexWant].name, pct[indexWant].phone, pct[indexWant].email, pct[indexWant].address, pct[indexWant].qq);
+    //3.保存到文件
+    //3.1清空文件内容
+    fp = fopen("contact2.txt", "w");
+    fclose(fp);
+    //3.2写入文件
+    for (int i = 0; i < len; i++)
+    {
+        saveContactSerialize(&pct[i]);
+    }
+}
+void doEdit2()
+{ //1.加载所有联系人到内存
+    FILE *fp = fopen("contact2.txt", "rb");
+    int len = getContactcountSer(); //获取联系人数量
+    rewind(fp);
+    Contact *pct = (Contact *)malloc(sizeof(Contact) * len); //根据数量分配空间
+    char buf[sizeof(Contact)] = {0};
+    for (int i = 0; i < len; i++)
+    {
+        fread(buf, sizeof(buf), 1, fp);
+        pct[i] = *((Contact *)buf);
+        memset(buf, 0, sizeof(buf));
+    }
+    fclose(fp);
+    //2.修改
+    char name[50] = {0};
+    //memset(buf, 0, sizeof(buf));
+    int indexWant = 0;
+    printf("请输入需要修改的联系人的姓名:");
+    scanf("%s", name);
+    for (int i = 0; i < len; i++)
+    {
+        if (strcmp(pct[i].name, name) == 0)
+        {
+            indexWant = i;
+            break;
+        }
+    }
+    printf("===============你需要查找的联系人信息===============\n");
+    printf("name:%s\nphone:%s\nemail:%s\naddress:%s\nqq:%s\n", pct[indexWant].name, pct[indexWant].phone, pct[indexWant].email, pct[indexWant].address, pct[indexWant].qq);
+    memset(name, 0, sizeof(name));
+    char phone[12] = {0};
+    char email[100] = {0};
+    char address[100] = {0};
+    char qq[12] = {0};
+    printf("请输入需要修改的联系人的姓名，电话，Email，住址，qq，用空格隔开,不需要修改的内容用-代替\n");
+    scanf("%s %s %s %s %s", name, phone, email, address, qq);
+
+    //memset(pct[indexWant].name, 0, sizeof(pct[indexWant].name));
+    strcpy(pct[indexWant].name, (strcmp(name, "-") == 0 ? pct[indexWant].name : name));
+
+    // memset(pct[indexWant].phone, 0, sizeof(pct[indexWant].phone));
+    strcpy(pct[indexWant].phone, (strcmp(phone, "-") == 0 ? pct[indexWant].phone : phone));
+
+    //memset(pct[indexWant].email, 0, sizeof(pct[indexWant].email));
+    strcpy(pct[indexWant].email, (strcmp(email, "-") == 0 ? pct[indexWant].email : email));
+
+    // memset(pct[indexWant].address, 0, sizeof(pct[indexWant].address));
+    strcpy(pct[indexWant].address, (strcmp(address, "-") == 0 ? pct[indexWant].address : address));
+
+    // memset(pct[indexWant].qq, 0, sizeof(pct[indexWant].qq));
+    strcpy(pct[indexWant].qq, (strcmp(qq, "-") == 0 ? pct[indexWant].qq : qq));
+
+    printf("修改后的数据\nname:%s\nphone:%s\nemail:%s\naddress:%s\nqq:%s\n", pct[indexWant].name, pct[indexWant].phone, pct[indexWant].email, pct[indexWant].address, pct[indexWant].qq);
+    //3.保存到文件
+    //3.1清空文件内容
+    fp = fopen("contact2.txt", "w");
+    fclose(fp);
+    //3.2写入文件
+    for (int i = 0; i < len; i++)
+    {
+        saveContactSerialize(&pct[i]);
+    }
+}
+void editContact()
+{
+    char op[3] = {0};
+    do
+    {
+        doEdit2();
+        printf("输入y继续，n退出\n");
+        scanf("%s", op);
+    } while (strcmp(op, "n") != 0);
+    showMenu(); //返回主菜单
+}
+void loadFromFile(Contact **pContact, int *length)
+{
+    FILE *fp = fopen("contact2.txt", "rb");
+    int len = getContactcountSer(); //获取联系人数量
+    rewind(fp);
+    Contact *pct = (Contact *)malloc(sizeof(Contact) * len); //根据数量分配空间
+    char buf[sizeof(Contact)] = {0};
+    for (int i = 0; i < len; i++)
+    {
+        fread(buf, sizeof(buf), 1, fp);
+        pct[i] = *((Contact *)buf);
+        memset(buf, 0, sizeof(buf));
+    }
+    fclose(fp);
+    /*  for (int j = 0; j < len; j++)
+    {
+        printf("name:%s,phone:%s,email:%s,address:%s,qq:%s\n", pct[j].name, pct[j].phone, pct[j].email, pct[j].address, pct[j].qq);
+    } */
+    *length = len;
+    *pContact = pct;
+}
+
+void doDelete()
+{
+    char name[50] = {0};
+    printf("请输入需要删除的联系人姓名：");
+    scanf("%s", name);
+    //加载所有联系人到内存
+    Contact *pc = NULL;
+    int length = 0; //保存原来的长度
+    int newLen = 0; //保存删除一个元素后的长度
+    int indexWant = 0;
+    loadFromFile(&pc, &length);
+    // char buffer[sizeof(Contact)] = {0};
+    /* for (int i = 0; i < length; i++)
+    {
+        printf("%s,%s,%s,%s,%s\n", pc[i].name, pc[i].phone, pc[i].email, pc[i].address, pc[i].qq);
+    } */
+    //根据名称查询
+    for (int i = 0; i < length; i++)
+    {
+        if (strcmp(pc[i].name, name) == 0)
+        {
+            indexWant = i;
+            newLen = length - 1;
+            break;
+        }
+    }
+    //利用新长度申请新空间
+    int j = 0;
+    Contact *newPc = (Contact *)malloc(sizeof(Contact) * newLen);
+    //复制数据到新空间，不包含删除的那一个
+    for (int i = 0; i < length; i++)
+    {
+        if (i == indexWant)
+        {
+            continue;
+        }
+        newPc[j] = pc[i];
+        j++;
+    }
+    free(pc);
+    printf("new length:%d\n", newLen);
+    for (int i = 0; i < newLen; i++)
+    {
+        printf("%s,%s,%s,%s,%s\n", newPc[i].name, newPc[i].phone, newPc[i].email, newPc[i].address, newPc[i].qq);
+    }
+    //保存到文件
+    //1.先清空文件
+    FILE *f = fopen("contact2.txt", "w");
+    fclose(f);
+    //2.将内存的内容保存到文件
+    for (int i = 0; i < newLen; i++)
+    {
+        saveContactSerialize(&newPc[i]);
+    }
+}
+void deleteContact()
+{
+    char op[3] = {0};
+    do
+    {
+        doDelete();
+        printf("输入y继续，n退出");
+        scanf("%s", op);
+    } while (strcmp(op, "n") != 0);
+    showMenu(); //返回主菜单
+}
+
+void doQuery()
+{
+    Contact *pc = NULL;
+    int len = 0;
+    loadFromFile(&pc, &len);
+    char name[50] = {0};
+    int findindex = -1;
+    printf("请输入需要查询的联系人姓名\n");
+    scanf("%s", name);
+    for (int i = 0; i < len; i++)
+    {
+        if (strcmp(pc[i].name, name) == 0)
+        {
+            findindex = i;
+            break;
+        }
+    }
+    if (findindex != -1)
+    {
+        printf("找到了，资料如下\nname:%s\nphone:%s\nemail:%s\naddress:%s\nqq:%s\n", pc[findindex].name, pc[findindex].phone, pc[findindex].email, pc[findindex].address, pc[findindex].qq);
+    }
+    else
+    {
+        printf("对不起没有你要查找的联系人\n");
+    }
+}
+void queryContact()
+{
+    char op[3] = {0};
+    do
+    {
+        doQuery();
+        printf("键人y继续查询，n退出\n");
+        scanf("%s", op);
+    } while (strcmp(op, "n") != 0);
+
+    showMenu();
+}
+
+void showMenu()
+{
+    int op = -1;
+mainmenu:
+    printf("=========================通讯录小程序=================\n");
+    printf("0.显示所有联系人\n");
+    printf("1.增加联系人\n");
+    printf("2.删除联系人\n");
+    printf("3.修改有联系人信息\n");
+    printf("4.查询联系人\n");
+    printf("5.退出系统\n");
+    printf("请输入0-5：");
+    scanf("%d", &op);
+    switch (op)
+    {
+    case 0:
+        showAllContactsSer();
+        break;
+    case 1:
+        addContact();
+        break;
+    case 2:
+        deleteContact();
+        break;
+    case 3:
+        editContact();
+        break;
+    case 4:
+        queryContact();
+        break;
+    case 5:
+        exit(0);
+        break;
+    default:
+        goto mainmenu;
+        break;
+    }
+}
+int main(int argc, char const *argv[])
+{
+    showMenu();
+    return 0;
+}
