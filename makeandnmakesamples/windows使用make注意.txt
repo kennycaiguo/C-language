@@ -1,0 +1,3 @@
+如果使用的是mingw64的gcc，写好makefile后使用make命令会报错，解决办法：将mingw64/bin目录
+下面的mingw32-make.exe改名为make32.exe，然后使用make32命令就可以了，64位的系统不要改为make
+否则无法编译
